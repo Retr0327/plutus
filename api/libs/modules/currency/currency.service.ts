@@ -1,3 +1,4 @@
+import { Result, type Ok } from '@common/result';
 import { firstValueFrom } from 'rxjs';
 import { HttpService } from '@nestjs/axios';
 import { Injectable, Logger } from '@nestjs/common';
@@ -25,33 +26,37 @@ export class CurrencyService {
           `${BASE_API_URL}/currencies`,
         ),
       );
-      return Object.entries(response.data).map(([code, name]) => ({
-        code,
-        name,
-      }));
+      return Result.Ok(
+        Object.entries(response.data).map(([code, name]) => ({
+          code,
+          name,
+        })),
+      );
     } catch (err) {
       this.logger.error('Failed to fetch supported currencies', err);
-      return [{ code: 'USD', name: 'United States Dollar' }];
+      return Result.Ok([{ code: 'USD', name: 'United States Dollar' }]);
     }
   }
 
-  async getRates(): Promise<{
-    readonly base: string;
-    readonly date: number;
-    readonly rates: Record<string, number>;
-    readonly stale: boolean;
-    readonly error: string | null;
-  }> {
+  async getRates(): Promise<
+    Ok<{
+      readonly base: string;
+      readonly date: number;
+      readonly rates: Record<string, number>;
+      readonly stale: boolean;
+      readonly error: string | null;
+    }>
+  > {
     const now = Date.now();
     const cacheValid = this.cache && now - this.cache.fetchedAt < CACHE_TTL_MS;
     if (cacheValid) {
-      return {
+      return Result.Ok({
         base: 'USD',
         date: this.cache!.date,
         rates: { USD: 1, ...this.cache!.rates },
         stale: false,
         error: null,
-      };
+      });
     }
 
     try {
@@ -68,34 +73,34 @@ export class CurrencyService {
       };
       this.cache = freshCache;
 
-      return {
+      return Result.Ok({
         base: 'USD',
         date: freshCache.date,
         rates: { USD: 1, ...freshCache.rates },
         stale: false,
         error: null,
-      };
+      });
     } catch (err) {
       this.logger.error('Failed to fetch currency rates', err);
 
       if (this.cache) {
-        return {
+        return Result.Ok({
           base: 'USD',
           date: this.cache.date,
           rates: { USD: 1, ...this.cache.rates },
           stale: true,
           error:
             'Using cached rates. Currency service temporarily unavailable.',
-        };
+        });
       }
 
-      return {
+      return Result.Ok({
         base: 'USD',
         date: now,
         rates: { USD: 1 },
         stale: true,
         error: 'Currency service unavailable. Showing USD only.',
-      };
+      });
     }
   }
 }
