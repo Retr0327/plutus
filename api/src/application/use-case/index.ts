@@ -16,10 +16,13 @@ import { GetAdjustmentHistoryQuery } from './queries/get-adjustment-history/get-
 import { GetAdjustmentHistoryUseCase } from './queries/get-adjustment-history/get-adjustment-history.use-case';
 import { GetAdjustmentQuery } from './queries/get-adjustment/get-adjustment.input';
 import { GetAdjustmentUseCase } from './queries/get-adjustment/get-adjustment.use-case';
+import { GetAuditLogListQuery } from './queries/get-audit-log-list/get-audit-log-list.input';
+import { GetAuditLogListUseCase } from './queries/get-audit-log-list/get-audit-log-list.use-case';
 
 const useCases = [
   GetAdjustmentUseCase,
   GetAdjustmentHistoryUseCase,
+  GetAuditLogListUseCase,
   CreateAdjustmentUseCase,
   UpdateAdjustmentUseCase,
   DeleteAdjustmentUseCase,
@@ -35,6 +38,8 @@ export {
   GetAdjustmentUseCase,
   GetAdjustmentHistoryQuery,
   GetAdjustmentHistoryUseCase,
+  GetAuditLogListQuery,
+  GetAuditLogListUseCase,
   CreateAdjustmentCommand,
   CreateAdjustmentUseCase,
   UpdateAdjustmentCommand,
