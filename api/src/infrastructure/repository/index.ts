@@ -7,6 +7,7 @@ import {
   CampaignDomain,
   CampaignDomainRepository,
 } from './campaign.repository';
+import { InvoiceDomain, InvoiceDomainRepository } from './invoice.repository';
 
 export const repositoryProviders: Provider[] = [
   {
@@ -16,5 +17,9 @@ export const repositoryProviders: Provider[] = [
   {
     provide: CampaignDomain.Repository,
     useClass: CampaignDomainRepository,
+  },
+  {
+    provide: InvoiceDomain.Repository,
+    useClass: InvoiceDomainRepository,
   },
 ];
