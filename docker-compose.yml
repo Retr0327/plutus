@@ -1,0 +1,51 @@
+services:
+  api:
+    build: ./api
+    env_file:
+      - .env
+    depends_on:
+      postgres:
+        condition: service_healthy
+    command: >
+      sh -c "export POSTGRES_HOST=\"$$(dig +short postgres)\" &&
+             pnpm run typeorm migration:run &&
+             pnpm start:prod
+            "
+  client:
+    build: ./client
+    env_file:
+      - .env
+    command: node server.js
+
+  postgres:
+    image: postgres:16-alpine
+    restart: always
+    environment:
+      - POSTGRES_USER=${POSTGRES_USER:?err}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD:?err}
+      - POSTGRES_DB=${POSTGRES_DB:?err}
+    ports:
+      - 5431:5432
+    volumes:
+      - ./docker-volumes/pgdata:/home/postgres/pgdata/data
+    env_file:
+      - .env
+    healthcheck:
+      test: "pg_isready -U $POSTGRES_USER -d $POSTGRES_DB"
+      interval: 3s
+      timeout: 3s
+      retries: 5
+
+  nginx:
+    image: "nginx:stable"
+    depends_on:
+      - api
+      - client
+    links:
+      - api
+      - client
+    restart: always
+    ports:
+      - 3000:80
+    volumes:
+      - "./deployment/nginx.conf:/etc/nginx/nginx.conf"
