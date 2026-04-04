@@ -1,0 +1,20 @@
+{
+  "moduleFileExtensions": ["js", "json", "ts"],
+  "rootDir": "..",
+  "roots": ["<rootDir>/test/e2e"],
+  "testEnvironment": "node",
+  "testRegex": ".e2e-spec.ts$",
+  "transform": {
+    "^.+\\.(t|j)s$": "ts-jest"
+  },
+  "transformIgnorePatterns": [
+    "node_modules/(?!.*(@paralleldrive/cuid2|@noble/hashes))"
+  ],
+  "setupFiles": ["<rootDir>/test/setup-env.ts"],
+  "moduleNameMapper": {
+    "^@common/(.*)$": "<rootDir>/libs/common/$1",
+    "^@modules/(.*)$": "<rootDir>/libs/modules/$1",
+    "^@plutus/(.*)$": "<rootDir>/src/$1",
+    "^src/(.*)$": "<rootDir>/src/$1"
+  }
+}
