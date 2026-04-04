@@ -1,7 +1,7 @@
-import { Result, type Ok } from '@common/result';
 import { firstValueFrom } from 'rxjs';
 import { HttpService } from '@nestjs/axios';
 import { Injectable, Logger } from '@nestjs/common';
+import { Result, type Ok } from '@common/result';
 
 interface CachedRates {
   readonly rates: Record<string, number>;

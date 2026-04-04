@@ -1,5 +1,5 @@
-import { CurrencyService } from '@modules/currency/currency.service';
 import { Controller, Get } from '@nestjs/common';
+import { CurrencyService } from '@modules/currency/currency.service';
 import {
   GetRatesPresenter,
   GetSupportedCurrencyPresenter,
@@ -9,19 +9,19 @@ import {
 export class CurrencyController {
   constructor(
     private readonly currencyService: CurrencyService,
-    private readonly ratesPresenter: GetRatesPresenter,
-    private readonly supportedCurrencyPresenter: GetSupportedCurrencyPresenter,
+    private readonly getRatesPresenter: GetRatesPresenter,
+    private readonly getSupportedCurrencyPresenter: GetSupportedCurrencyPresenter,
   ) {}
 
   @Get('rates')
   async getRates() {
     const result = await this.currencyService.getRates();
-    return this.ratesPresenter.present(result.value);
+    return this.getRatesPresenter.present(result.value);
   }
 
   @Get('supported')
   async getSupportedCurrencies() {
     const result = await this.currencyService.getSupportedCurrencies();
-    return this.supportedCurrencyPresenter.present(result.value);
+    return this.getSupportedCurrencyPresenter.present(result.value);
   }
 }

@@ -1,8 +1,8 @@
+import helmet from 'helmet';
+import { NestFactory } from '@nestjs/core';
 import { HttpExceptionFilter } from '@common/errors';
 import { ResponseInterceptor } from '@common/interceptors/response.interceptor';
 import { ZodValidationPipe } from '@common/pipes/zod-validation.pipe';
-import helmet from 'helmet';
-import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 
 async function bootstrap() {

@@ -1,5 +1,5 @@
-import { Presenter } from '@common/domain/interfaces/presenter';
 import { Injectable } from '@nestjs/common';
+import { Presenter } from '@common/domain/interfaces/presenter';
 
 export type GetRatesPresenterInput = {
   readonly base: string;
