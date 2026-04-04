@@ -10,9 +10,12 @@ import { UnarchiveCampaignCommand } from './commands/unarchive-campaign/unarchiv
 import { UnarchiveCampaignUseCase } from './commands/unarchive-campaign/unarchive-campaign.use-case';
 import { UnarchiveInvoiceCommand } from './commands/unarchive-invoice/unarchive-invoice.input';
 import { UnarchiveInvoiceUseCase } from './commands/unarchive-invoice/unarchive-invoice.use-case';
+import { UpdateAdjustmentCommand } from './commands/update-adjustment/update-adjustment.input';
+import { UpdateAdjustmentUseCase } from './commands/update-adjustment/update-adjustment.use-case';
 
 const useCases = [
   CreateAdjustmentUseCase,
+  UpdateAdjustmentUseCase,
   DeleteAdjustmentUseCase,
   ArchiveCampaignUseCase,
   UnarchiveCampaignUseCase,
@@ -24,6 +27,8 @@ export {
   useCases,
   CreateAdjustmentCommand,
   CreateAdjustmentUseCase,
+  UpdateAdjustmentCommand,
+  UpdateAdjustmentUseCase,
   DeleteAdjustmentCommand,
   DeleteAdjustmentUseCase,
   ArchiveCampaignCommand,
