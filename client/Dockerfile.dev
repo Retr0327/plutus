@@ -1,0 +1,17 @@
+FROM node:22-bullseye-slim
+
+WORKDIR /app
+
+ENV PNPM_HOME="/pnpm"
+
+ENV PATH="$PNPM_HOME:$PATH"
+
+RUN npm i -g pnpm
+
+RUN pnpm config set auto-install-peers true
+
+COPY package* /app
+
+RUN --mount=type=cache,id=pnpm,target=/pnpm/store pnpm i
+
+COPY . /app
