@@ -1,0 +1,15 @@
+import { Command } from '@nestjs/cqrs';
+import { UnarchiveCampaignOutput } from './unarchive-campaign.output';
+
+type UnarchiveCampaignCommandInput = {
+  id: string;
+};
+
+export class UnarchiveCampaignCommand extends Command<UnarchiveCampaignOutput> {
+  readonly id: string;
+
+  constructor(input: UnarchiveCampaignCommandInput) {
+    super();
+    this.id = input.id;
+  }
+}
