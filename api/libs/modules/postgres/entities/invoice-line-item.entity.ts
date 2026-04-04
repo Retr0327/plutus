@@ -22,9 +22,6 @@ export class InvoiceLineItem extends DefaultEntity {
     Object.assign(this, args);
   }
 
-  @Column({ length: 255, default: '' })
-  name!: string;
-
   @Column('decimal', { precision: 12, scale: 2, name: 'actual_amount' })
   actualAmount!: number;
 

@@ -52,7 +52,6 @@ export class Init1711720000000 implements MigrationInterface {
     await queryRunner.query(`
       CREATE TABLE "invoice_line_items" (
         "id" char(24) NOT NULL,
-        "name" varchar(255) NOT NULL DEFAULT '',
         "actual_amount" decimal(12,2) NOT NULL,
         "invoice_id" char(24) NOT NULL,
         "campaign_line_item_id" char(24) NOT NULL,

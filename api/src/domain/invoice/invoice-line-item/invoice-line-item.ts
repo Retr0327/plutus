@@ -1,18 +1,16 @@
-import { Entity } from '@common/domain/core/entity';
-import { Result } from '@common/result';
 import { CampaignLineItemId } from '@plutus/domain/campaign/campaign-line-item/campaign-line-item-id';
 import { InvoiceId } from '@plutus/domain/common/invoice-id';
 import { InvoiceLineItemId } from '@plutus/domain/common/invoice-line-item-id';
 import { Money } from '@plutus/domain/common/money';
+import { Entity } from '@common/domain/core/entity';
+import { Result } from '@common/result';
 import { Adjustment } from './adjustment/adjustment';
 import { AdjustmentCollection } from './adjustment/adjustment-collection';
-import { InvoiceLineItemName } from './invoice-line-item-name';
 
 export interface InvoiceLineItemProps {
   id: string;
   invoiceId: string;
   campaignLineItemId: string;
-  name: string;
   actualAmount: number;
   adjustments?: Adjustment[];
 }
@@ -20,14 +18,12 @@ export interface InvoiceLineItemProps {
 export interface CreateInvoiceLineItemProps {
   invoiceId: string;
   campaignLineItemId: string;
-  name: string;
   actualAmount: number;
 }
 
 export interface InvoiceLineItemEntityProps {
   invoiceId: InvoiceId;
   campaignLineItemId: CampaignLineItemId;
-  name: InvoiceLineItemName;
   actualAmount: Money;
   adjustments: AdjustmentCollection;
 }
@@ -42,10 +38,6 @@ export class InvoiceLineItem extends Entity<
 
   get campaignLineItemId() {
     return this.props.campaignLineItemId;
-  }
-
-  get name() {
-    return this.props.name;
   }
 
   get actualAmount() {
@@ -97,14 +89,12 @@ export class InvoiceLineItem extends Entity<
     const campaignLineItemId = CampaignLineItemId.from(
       props.campaignLineItemId,
     );
-    const name = InvoiceLineItemName.from(props.name);
     const actualAmount = Money.from(props.actualAmount);
     const adjustments = new AdjustmentCollection(props.adjustments);
 
     return new InvoiceLineItem(id, {
       invoiceId,
       campaignLineItemId,
-      name,
       actualAmount,
       adjustments,
     });
@@ -121,11 +111,6 @@ export class InvoiceLineItem extends Entity<
       return invoiceIdResult;
     }
 
-    const nameResult = InvoiceLineItemName.create(props.name);
-    if (nameResult.isErr()) {
-      return nameResult;
-    }
-
     const actualAmountResult = Money.create(props.actualAmount);
     if (actualAmountResult.isErr()) {
       return actualAmountResult;
@@ -139,7 +124,6 @@ export class InvoiceLineItem extends Entity<
       new InvoiceLineItem(idResult.value, {
         invoiceId: invoiceIdResult.value,
         campaignLineItemId,
-        name: nameResult.value,
         actualAmount: actualAmountResult.value,
         adjustments: new AdjustmentCollection(),
       }),

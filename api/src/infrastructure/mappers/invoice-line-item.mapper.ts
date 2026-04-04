@@ -12,7 +12,6 @@ export class InvoiceLineItemMapper {
       id: po.id,
       invoiceId: po.invoiceId,
       campaignLineItemId: po.campaignLineItemId,
-      name: po.name ?? '',
       actualAmount: Number(po.actualAmount),
       adjustments,
     });
@@ -23,7 +22,6 @@ export class InvoiceLineItemMapper {
       id: item.id.value,
       invoiceId: item.invoiceId.value,
       campaignLineItemId: item.campaignLineItemId.value,
-      name: item.name.value,
       actualAmount: item.actualAmount.value,
     };
     return po;
@@ -37,7 +35,6 @@ export class InvoiceLineItemMapper {
       id: item.id.value,
       invoiceId: item.invoiceId.value,
       campaignLineItemId: item.campaignLineItemId.value,
-      name: item.name.value,
       actualAmount: item.actualAmount.value,
       adjustmentsTotal: item.adjustmentsTotal.value,
       billableAmount: item.billableAmount.value,

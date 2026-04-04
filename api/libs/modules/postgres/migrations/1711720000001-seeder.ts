@@ -39,18 +39,18 @@ export class Seeder1711720000001 implements MigrationInterface {
     `);
 
     await queryRunner.query(`
-      INSERT INTO "invoice_line_items" ("id", "name", "actual_amount", "invoice_id", "campaign_line_item_id", "created_at", "updated_at")
+      INSERT INTO "invoice_line_items" ("id", "actual_amount", "invoice_id", "campaign_line_item_id", "created_at", "updated_at")
       VALUES
-        ('nzjs4zd7e7edepopyzhla2ut', 'Display Ads - Premium Placements', 48750.00, 'ywtkrlcr3xfx7lengdncbg4z', 'drmahwrh2rqjq3dbrh06m21q', 1711720000000, 1711720000000),
-        ('ytvsjvqemf9v2jp99nttzhy6', 'Video Pre-roll - YouTube', 73200.00, 'ywtkrlcr3xfx7lengdncbg4z', 'pcthoxi1gvucwn8a4zvb9s7n', 1711720000000, 1711720000000),
-        ('s3aujt991ermkpcvowxsexxe', 'Social Media Impressions - Meta', 31500.00, 'i27q4xho19okxgiqdidp46em', 'pacmrsccnwu1jcld325zntqf', 1711720000000, 1711720000000),
-        ('qxx1j78psiwfuhxsqm92eqlm', 'Display Retargeting - Google', 39200.00, 'zw8nz9w4xekqugi9qm275ksj', 'r20b55yhy92p20gndj59gsyv', 1711720000000, 1711720000000),
-        ('y85twauvhfun7aq5tz785wdu', 'Email Campaign - Holiday Promo', 14800.00, 'zw8nz9w4xekqugi9qm275ksj', 'jb70tdaswghyxaqddiw4zid7', 1711720000000, 1711720000000),
-        ('qdutqrfyym6myx8ypq8yu1as', 'Search Ads - Google', 26100.00, 'l0po876ygllp7fy41uv4t2lm', 'sjm5l1zj3af3ibof725y0y9j', 1711720000000, 1711720000000),
-        ('e861qfnkyiqmaqxh038r1wmk', 'Connected TV - Streaming', 58500.00, 'kb046vs5rz3cnyqbejrpswgv', 'f9t6brfk41eld50cevehedcm', 1711720000000, 1711720000000),
-        ('j7gidj1ot5d3vha9628jb294', 'Programmatic Display', 87300.00, 'kb046vs5rz3cnyqbejrpswgv', 'u0843x7x1lq0rpoyrhrags3h', 1711720000000, 1711720000000),
-        ('tu7h2bnh1u5yn4cqv0x8t9f0', 'Social Ads - Instagram', 35800.00, 'ukxdakn69w8johiygjajdume', 'comcoaviguqq2nju6b0j0vxb', 1711720000000, 1711720000000),
-        ('he4s0oall1rnms9109q7h4u1', 'Social Ads - TikTok', 20500.00, 'ukxdakn69w8johiygjajdume', 'atufs2rcpb0wl9c6r0rqbhqa', 1711720000000, 1711720000000)
+        ('nzjs4zd7e7edepopyzhla2ut', 48750.00, 'ywtkrlcr3xfx7lengdncbg4z', 'drmahwrh2rqjq3dbrh06m21q', 1711720000000, 1711720000000),
+        ('ytvsjvqemf9v2jp99nttzhy6', 73200.00, 'ywtkrlcr3xfx7lengdncbg4z', 'pcthoxi1gvucwn8a4zvb9s7n', 1711720000000, 1711720000000),
+        ('s3aujt991ermkpcvowxsexxe', 31500.00, 'i27q4xho19okxgiqdidp46em', 'pacmrsccnwu1jcld325zntqf', 1711720000000, 1711720000000),
+        ('qxx1j78psiwfuhxsqm92eqlm', 39200.00, 'zw8nz9w4xekqugi9qm275ksj', 'r20b55yhy92p20gndj59gsyv', 1711720000000, 1711720000000),
+        ('y85twauvhfun7aq5tz785wdu', 14800.00, 'zw8nz9w4xekqugi9qm275ksj', 'jb70tdaswghyxaqddiw4zid7', 1711720000000, 1711720000000),
+        ('qdutqrfyym6myx8ypq8yu1as', 26100.00, 'l0po876ygllp7fy41uv4t2lm', 'sjm5l1zj3af3ibof725y0y9j', 1711720000000, 1711720000000),
+        ('e861qfnkyiqmaqxh038r1wmk', 58500.00, 'kb046vs5rz3cnyqbejrpswgv', 'f9t6brfk41eld50cevehedcm', 1711720000000, 1711720000000),
+        ('j7gidj1ot5d3vha9628jb294', 87300.00, 'kb046vs5rz3cnyqbejrpswgv', 'u0843x7x1lq0rpoyrhrags3h', 1711720000000, 1711720000000),
+        ('tu7h2bnh1u5yn4cqv0x8t9f0', 35800.00, 'ukxdakn69w8johiygjajdume', 'comcoaviguqq2nju6b0j0vxb', 1711720000000, 1711720000000),
+        ('he4s0oall1rnms9109q7h4u1', 20500.00, 'ukxdakn69w8johiygjajdume', 'atufs2rcpb0wl9c6r0rqbhqa', 1711720000000, 1711720000000)
     `);
 
     await queryRunner.query(`

@@ -5,6 +5,7 @@ import {
 } from '@plutus/application/use-case/queries/get-invoice-list/get-invoice-list.output';
 import { AdjustmentMapper } from '@plutus/infrastructure/mappers/adjustment.mapper';
 import { AuditLogMapper } from '@plutus/infrastructure/mappers/audit-log.mapper';
+import { CampaignMapper } from '@plutus/infrastructure/mappers/campaign.mapper';
 import { InvoiceMapper } from '@plutus/infrastructure/mappers/invoice.mapper';
 import { Presenter } from '@common/domain/interfaces/presenter';
 
@@ -27,7 +28,7 @@ export class GetInvoiceListPresenter implements Presenter<
 
 export type GetOneInvoicePresenterInput = {
   invoice: ReturnType<(typeof InvoiceMapper)['toDto']>;
-  campaignName: string;
+  campaign: ReturnType<(typeof CampaignMapper)['toDto']>;
 };
 
 export type GetOneInvoicePresenterOutput = {
@@ -41,7 +42,7 @@ export type GetOneInvoicePresenterOutput = {
   };
   lineItems: {
     id: string;
-    name: string;
+    name: string | null;
     campaignLineItemId: string;
     actualAmount: number;
     adjustments: {
@@ -68,7 +69,7 @@ export class GetOneInvoicePresenter implements Presenter<
   GetOneInvoicePresenterOutput
 > {
   present(input: GetOneInvoicePresenterInput) {
-    const { invoice, campaignName } = input;
+    const { invoice, campaign } = input;
 
     const totalActualAmount = invoice.lineItems.reduce(
       (sum, li) => sum + li.actualAmount,
@@ -79,6 +80,10 @@ export class GetOneInvoicePresenter implements Presenter<
       0,
     );
 
+    const campaignLineItemNameMap = new Map(
+      campaign.lineItems.map((cli) => [cli.id, cli.name]),
+    );
+
     return {
       id: invoice.id,
       invoiceNumber: invoice.invoiceNumber,
@@ -86,11 +91,11 @@ export class GetOneInvoicePresenter implements Presenter<
       archivedAt: invoice.archivedAt,
       campaign: {
         id: invoice.campaignId,
-        name: campaignName,
+        name: campaign.name,
       },
       lineItems: invoice.lineItems.map((li) => ({
         id: li.id,
-        name: li.name,
+        name: campaignLineItemNameMap.get(li.campaignLineItemId) ?? null,
         campaignLineItemId: li.campaignLineItemId,
         actualAmount: li.actualAmount,
         adjustments: li.adjustments.map((adj) => ({

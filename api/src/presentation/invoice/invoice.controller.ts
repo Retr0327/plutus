@@ -90,14 +90,15 @@ export class InvoiceController {
     const campaignOrError = await this.queryBus.execute(
       new GetCampaignQuery({ id: invoice.campaignId }),
     );
-    const campaignName =
-      campaignOrError.isOk() && campaignOrError.value
-        ? campaignOrError.value.name
-        : '';
-
+    if (campaignOrError.isErr()) {
+      throw campaignOrError.error;
+    }
+    if (campaignOrError.value === null) {
+      throw new NotFoundException({ campaignId: invoice.campaignId });
+    }
     return this.getOneInvoicePresenter.present({
       invoice,
-      campaignName,
+      campaign: campaignOrError.value,
     });
   }
 
