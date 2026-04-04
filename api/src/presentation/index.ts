@@ -12,10 +12,21 @@ import {
   GetRatesPresenter,
   GetSupportedCurrencyPresenter,
 } from './currency/currency.presenter';
+import { InvoiceController } from './invoice/invoice.controller';
+import {
+  ArchiveInvoicePresenter,
+  DeleteAdjustmentPresenter,
+  GetAdjustmentHistoryPresenter,
+  GetAdjustmentPresenter,
+  GetInvoiceListPresenter,
+  GetOneInvoicePresenter,
+  UnarchiveInvoicePresenter,
+} from './invoice/invoice.presenter';
 
 const controllers = [
   CurrencyController,
   CampaignController,
+  InvoiceController,
   AuditLogController,
 ];
 
@@ -27,6 +38,13 @@ const controllerProviders = [
   GetSupportedCurrencyPresenter,
   GetOneCampaignPresenter,
   GetCampaignSummaryPresenter,
+  GetInvoiceListPresenter,
+  GetOneInvoicePresenter,
+  ArchiveInvoicePresenter,
+  UnarchiveInvoicePresenter,
+  GetAdjustmentPresenter,
+  DeleteAdjustmentPresenter,
+  GetAdjustmentHistoryPresenter,
 ];
 
 export { controllers, controllerProviders };
