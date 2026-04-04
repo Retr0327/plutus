@@ -1,0 +1,51 @@
+import {
+  Column,
+  Entity,
+  JoinColumn,
+  ManyToOne,
+  OneToMany,
+  Unique,
+} from 'typeorm';
+import { DefaultEntity, PrimaryCuidColumn } from '@modules/postgres/common';
+import { Adjustment } from './adjustment.entity';
+import { CampaignLineItem } from './campaign-line-item.entity';
+import { Invoice } from './invoice.entity';
+
+@Entity('invoice_line_items')
+@Unique('UQ_invoice_line_items_invoice_campaign_line', [
+  'invoiceId',
+  'campaignLineItemId',
+])
+export class InvoiceLineItem extends DefaultEntity {
+  constructor(args?: Partial<InvoiceLineItem>) {
+    super();
+    Object.assign(this, args);
+  }
+
+  @Column({ length: 255, default: '' })
+  name!: string;
+
+  @Column('decimal', { precision: 12, scale: 2, name: 'actual_amount' })
+  actualAmount!: number;
+
+  @PrimaryCuidColumn({ name: 'invoice_id' })
+  invoiceId!: string;
+
+  @ManyToOne(() => Invoice, (invoice) => invoice.lineItems, {
+    onDelete: 'CASCADE',
+  })
+  @JoinColumn({ name: 'invoice_id' })
+  invoice!: Invoice;
+
+  @PrimaryCuidColumn({ name: 'campaign_line_item_id' })
+  campaignLineItemId!: string;
+
+  @ManyToOne(() => CampaignLineItem, (lineItem) => lineItem.invoiceLineItems, {
+    onDelete: 'CASCADE',
+  })
+  @JoinColumn({ name: 'campaign_line_item_id' })
+  campaignLineItem!: CampaignLineItem;
+
+  @OneToMany(() => Adjustment, (adjustment) => adjustment.invoiceLineItem)
+  adjustments!: Adjustment[];
+}
