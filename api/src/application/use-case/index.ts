@@ -12,8 +12,11 @@ import { UnarchiveInvoiceCommand } from './commands/unarchive-invoice/unarchive-
 import { UnarchiveInvoiceUseCase } from './commands/unarchive-invoice/unarchive-invoice.use-case';
 import { UpdateAdjustmentCommand } from './commands/update-adjustment/update-adjustment.input';
 import { UpdateAdjustmentUseCase } from './commands/update-adjustment/update-adjustment.use-case';
+import { GetAdjustmentHistoryQuery } from './queries/get-adjustment-history/get-adjustment-history.input';
+import { GetAdjustmentHistoryUseCase } from './queries/get-adjustment-history/get-adjustment-history.use-case';
 
 const useCases = [
+  GetAdjustmentHistoryUseCase,
   CreateAdjustmentUseCase,
   UpdateAdjustmentUseCase,
   DeleteAdjustmentUseCase,
@@ -25,6 +28,8 @@ const useCases = [
 
 export {
   useCases,
+  GetAdjustmentHistoryQuery,
+  GetAdjustmentHistoryUseCase,
   CreateAdjustmentCommand,
   CreateAdjustmentUseCase,
   UpdateAdjustmentCommand,
