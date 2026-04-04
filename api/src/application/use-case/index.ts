@@ -14,8 +14,11 @@ import { UpdateAdjustmentCommand } from './commands/update-adjustment/update-adj
 import { UpdateAdjustmentUseCase } from './commands/update-adjustment/update-adjustment.use-case';
 import { GetAdjustmentHistoryQuery } from './queries/get-adjustment-history/get-adjustment-history.input';
 import { GetAdjustmentHistoryUseCase } from './queries/get-adjustment-history/get-adjustment-history.use-case';
+import { GetAdjustmentQuery } from './queries/get-adjustment/get-adjustment.input';
+import { GetAdjustmentUseCase } from './queries/get-adjustment/get-adjustment.use-case';
 
 const useCases = [
+  GetAdjustmentUseCase,
   GetAdjustmentHistoryUseCase,
   CreateAdjustmentUseCase,
   UpdateAdjustmentUseCase,
@@ -28,6 +31,8 @@ const useCases = [
 
 export {
   useCases,
+  GetAdjustmentQuery,
+  GetAdjustmentUseCase,
   GetAdjustmentHistoryQuery,
   GetAdjustmentHistoryUseCase,
   CreateAdjustmentCommand,
