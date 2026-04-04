@@ -20,9 +20,12 @@ import { GetAuditLogListQuery } from './queries/get-audit-log-list/get-audit-log
 import { GetAuditLogListUseCase } from './queries/get-audit-log-list/get-audit-log-list.use-case';
 import { GetCampaignSummaryQuery } from './queries/get-campaign-summary/get-campaign-summary.input';
 import { GetCampaignSummaryUseCase } from './queries/get-campaign-summary/get-campaign-summary.use-case';
+import { GetCampaignQuery } from './queries/get-campaign/get-campaign.input';
+import { GetCampaignUseCase } from './queries/get-campaign/get-campaign.use-case';
 
 const useCases = [
   GetCampaignSummaryUseCase,
+  GetCampaignUseCase,
   GetAdjustmentUseCase,
   GetAdjustmentHistoryUseCase,
   GetAuditLogListUseCase,
@@ -39,6 +42,8 @@ export {
   useCases,
   GetCampaignSummaryQuery,
   GetCampaignSummaryUseCase,
+  GetCampaignQuery,
+  GetCampaignUseCase,
   GetAdjustmentQuery,
   GetAdjustmentUseCase,
   GetAdjustmentHistoryQuery,
