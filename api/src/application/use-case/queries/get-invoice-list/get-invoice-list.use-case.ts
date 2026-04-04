@@ -35,7 +35,7 @@ export class GetInvoiceListUseCase implements IQueryHandler<
       const [invoices, totalItems] = await this.invoiceRepository.findAndCount({
         where,
         relations: ['campaign', 'lineItems', 'lineItems.adjustments'],
-        order: { createdAt: 'ASC' },
+        order: { createdAt: 'ASC', id: 'ASC' },
         skip: (page - 1) * limit,
         take: limit,
       });

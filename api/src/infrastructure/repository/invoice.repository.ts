@@ -57,7 +57,7 @@ export class InvoiceDomainRepository implements AbstractInvoiceDomainRepository 
     const [items, totalItems] = await this.invoiceRepository.findAndCount({
       where,
       relations: ['lineItems', 'lineItems.adjustments', 'campaign'],
-      order: { createdAt: 'ASC' },
+      order: { createdAt: 'ASC', id: 'ASC' },
       skip: (page - 1) * limit,
       take: limit,
     });
