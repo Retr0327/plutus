@@ -1,7 +1,7 @@
-import { Entity } from '@common/domain/core/entity';
-import { Result } from '@common/result';
 import { CampaignId } from '@plutus/domain/common/campaign-id';
 import { Money } from '@plutus/domain/common/money';
+import { Entity } from '@common/domain/core/entity';
+import { Result } from '@common/result';
 import { CampaignLineItemId } from './campaign-line-item-id';
 import { CampaignLineItemName } from './campaign-line-item-name';
 

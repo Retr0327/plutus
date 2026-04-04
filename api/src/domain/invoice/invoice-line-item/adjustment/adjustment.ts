@@ -1,8 +1,8 @@
+import { InvoiceLineItemId } from '@plutus/domain/common/invoice-line-item-id';
+import { Money } from '@plutus/domain/common/money';
 import { CreatedAt, UpdatedAt } from '@common/domain/common/timestamp';
 import { Entity } from '@common/domain/core/entity';
 import { Result } from '@common/result';
-import { InvoiceLineItemId } from '@plutus/domain/common/invoice-line-item-id';
-import { Money } from '@plutus/domain/common/money';
 import { AdjustmentId } from './adjustment-id';
 import { AdjustmentReason } from './adjustment-reason';
 import { CreatedBy } from './created-by';

@@ -1,3 +1,5 @@
+import { CampaignId } from '@plutus/domain/common/campaign-id';
+import { Money } from '@plutus/domain/common/money';
 import {
   CreatedAt,
   Timestamp,
@@ -5,8 +7,6 @@ import {
 } from '@common/domain/common/timestamp';
 import { AggregateRoot } from '@common/domain/core/aggregate-root';
 import { Result } from '@common/result';
-import { CampaignId } from '@plutus/domain/common/campaign-id';
-import { Money } from '@plutus/domain/common/money';
 import { Advertiser } from './advertiser';
 import { CampaignLineItem } from './campaign-line-item/campaign-line-item';
 import { CampaignLineItemCollection } from './campaign-line-item/campaign-line-item-collection';

@@ -1,3 +1,7 @@
+import { CampaignId } from '@plutus/domain/common/campaign-id';
+import { InvoiceId } from '@plutus/domain/common/invoice-id';
+import { InvoiceLineItemId } from '@plutus/domain/common/invoice-line-item-id';
+import { Money } from '@plutus/domain/common/money';
 import {
   CreatedAt,
   Timestamp,
@@ -6,10 +10,6 @@ import {
 import { AggregateRoot } from '@common/domain/core/aggregate-root';
 import { Result } from '@common/result';
 import { InvoiceStatus as InvoiceStatusEnum } from '@modules/postgres/enum';
-import { CampaignId } from '@plutus/domain/common/campaign-id';
-import { InvoiceId } from '@plutus/domain/common/invoice-id';
-import { InvoiceLineItemId } from '@plutus/domain/common/invoice-line-item-id';
-import { Money } from '@plutus/domain/common/money';
 import { Adjustment } from './invoice-line-item/adjustment/adjustment';
 import { InvoiceLineItem } from './invoice-line-item/invoice-line-item';
 import { InvoiceLineItemCollection } from './invoice-line-item/invoice-line-item-collection';
