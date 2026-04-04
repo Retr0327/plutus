@@ -22,10 +22,13 @@ import { GetCampaignSummaryQuery } from './queries/get-campaign-summary/get-camp
 import { GetCampaignSummaryUseCase } from './queries/get-campaign-summary/get-campaign-summary.use-case';
 import { GetCampaignQuery } from './queries/get-campaign/get-campaign.input';
 import { GetCampaignUseCase } from './queries/get-campaign/get-campaign.use-case';
+import { GetInvoiceListQuery } from './queries/get-invoice-list/get-invoice-list.input';
+import { GetInvoiceListUseCase } from './queries/get-invoice-list/get-invoice-list.use-case';
 
 const useCases = [
   GetCampaignSummaryUseCase,
   GetCampaignUseCase,
+  GetInvoiceListUseCase,
   GetAdjustmentUseCase,
   GetAdjustmentHistoryUseCase,
   GetAuditLogListUseCase,
@@ -44,6 +47,8 @@ export {
   GetCampaignSummaryUseCase,
   GetCampaignQuery,
   GetCampaignUseCase,
+  GetInvoiceListQuery,
+  GetInvoiceListUseCase,
   GetAdjustmentQuery,
   GetAdjustmentUseCase,
   GetAdjustmentHistoryQuery,
