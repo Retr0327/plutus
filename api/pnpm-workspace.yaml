@@ -1,0 +1,7 @@
+packages:
+  - '.'
+
+allowBuilds:
+  '@nestjs/core': false
+  better-sqlite3: true
+  unrs-resolver: false
