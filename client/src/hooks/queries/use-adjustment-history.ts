@@ -9,7 +9,11 @@ interface AuditLogListResponse {
   readonly meta: { readonly total: number; readonly page: number; readonly limit: number };
 }
 
-export function useAdjustmentHistory(invoiceId: string, lineItemId: string, adjustmentId: string) {
+export function useAdjustmentHistory(
+  invoiceId: string | number,
+  lineItemId: string | number,
+  adjustmentId: string | number
+) {
   return useQuery({
     queryKey: queryKeys.adjustments.history(invoiceId, lineItemId, adjustmentId),
     queryFn: async () => {

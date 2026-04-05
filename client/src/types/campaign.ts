@@ -1,5 +1,5 @@
 export interface CampaignListItem {
-  id: string;
+  id: number;
   name: string;
   advertiser: string;
   startDate: number;
@@ -11,7 +11,7 @@ export interface CampaignListItem {
 }
 
 export interface CampaignDetail {
-  id: string;
+  id: number;
   name: string;
   advertiser: string;
   startDate: number;
@@ -24,14 +24,14 @@ export interface CampaignDetail {
 }
 
 export interface CampaignLineItem {
-  id: string;
+  id: number;
   name: string;
   bookedAmount: number;
   actualAmount: number;
 }
 
 export interface CampaignInvoiceSummary {
-  id: string;
+  id: number;
   invoiceNumber: string;
   status: 'draft' | 'finalized';
   totalBillableAmount: number;

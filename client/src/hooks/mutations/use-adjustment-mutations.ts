@@ -5,26 +5,26 @@ import { request } from '@plutus/libs/request';
 import { queryKeys } from '@plutus/utils/query-keys';
 
 interface CreateAdjustmentInput {
-  invoiceId: string;
-  lineItemId: string;
+  invoiceId: string | number;
+  lineItemId: string | number;
   amount: number;
   reason: string;
   createdBy: string;
 }
 
 interface UpdateAdjustmentInput {
-  invoiceId: string;
-  lineItemId: string;
-  adjustmentId: string;
+  invoiceId: string | number;
+  lineItemId: string | number;
+  adjustmentId: string | number;
   amount?: number;
   reason?: string;
   updatedBy: string;
 }
 
 interface DeleteAdjustmentInput {
-  invoiceId: string;
-  lineItemId: string;
-  adjustmentId: string;
+  invoiceId: string | number;
+  lineItemId: string | number;
+  adjustmentId: string | number;
   deletedBy: string;
 }
 

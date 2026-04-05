@@ -23,8 +23,8 @@ const updateSchema = z.object({
 });
 
 interface AdjustmentFormProps {
-  invoiceId: string;
-  lineItemId: string;
+  invoiceId: string | number;
+  lineItemId: string | number;
   adjustment?: Adjustment;
   onClose: () => void;
 }

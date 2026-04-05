@@ -1,7 +1,7 @@
 export const Route = {
   Home: '/',
   Campaigns: '/campaigns',
-  CampaignDetail: (id: string) => `/campaigns/${id}`,
+  CampaignDetail: (id: string | number) => `/campaigns/${id}`,
   Invoices: '/invoices',
-  InvoiceDetail: (id: string) => `/invoices/${id}`,
+  InvoiceDetail: (id: string | number) => `/invoices/${id}`,
 } as const;

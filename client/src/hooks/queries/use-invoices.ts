@@ -9,7 +9,7 @@ export interface InvoiceListParams {
   page?: number;
   limit?: number;
   status?: string;
-  campaignId?: string;
+  campaignId?: string | number;
   includeArchived?: boolean;
 }
 
@@ -18,7 +18,7 @@ function buildSearchParams(params: InvoiceListParams): string {
   if (params.page) sp.set('page', String(params.page));
   if (params.limit) sp.set('limit', String(params.limit));
   if (params.status) sp.set('status', params.status);
-  if (params.campaignId) sp.set('campaignId', params.campaignId);
+  if (params.campaignId) sp.set('campaignId', String(params.campaignId));
   if (params.includeArchived) sp.set('includeArchived', 'true');
   const qs = sp.toString();
   return qs ? `?${qs}` : '';

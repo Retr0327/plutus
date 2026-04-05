@@ -11,10 +11,10 @@ interface LineItemCardProps {
   isDraft: boolean;
   currency?: string;
   rates?: Record<string, number>;
-  onAddAdjustment: (lineItemId: string) => void;
-  onEditAdjustment: (lineItemId: string, adjustment: Adjustment) => void;
-  onDeleteAdjustment: (lineItemId: string, adjustment: Adjustment) => void;
-  onViewHistory: (lineItemId: string, adjustment: Adjustment) => void;
+  onAddAdjustment: (lineItemId: string | number) => void;
+  onEditAdjustment: (lineItemId: string | number, adjustment: Adjustment) => void;
+  onDeleteAdjustment: (lineItemId: string | number, adjustment: Adjustment) => void;
+  onViewHistory: (lineItemId: string | number, adjustment: Adjustment) => void;
 }
 
 export function LineItemCard({

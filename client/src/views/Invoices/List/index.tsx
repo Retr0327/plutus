@@ -46,7 +46,7 @@ export default function InvoiceListView() {
   const campaignOptions = useMemo(
     () =>
       (campaignData?.items ?? []).map((c) => ({
-        value: c.id,
+        value: String(c.id),
         label: c.name,
       })),
     [campaignData]

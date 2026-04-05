@@ -1,8 +1,8 @@
 export interface InvoiceListItem {
-  id: string;
+  id: number;
   invoiceNumber: string;
   status: 'draft' | 'finalized';
-  campaignId: string;
+  campaignId: number;
   campaignName: string;
   totalActualAmount: number;
   totalAdjustments: number;
@@ -12,12 +12,12 @@ export interface InvoiceListItem {
 }
 
 export interface InvoiceDetail {
-  id: string;
+  id: number;
   invoiceNumber: string;
   status: 'draft' | 'finalized';
   archivedAt: number | null;
   campaign: {
-    id: string;
+    id: number;
     name: string;
   };
   lineItems: InvoiceLineItem[];
@@ -29,9 +29,9 @@ export interface InvoiceDetail {
 }
 
 export interface InvoiceLineItem {
-  id: string;
+  id: number;
   name: string;
-  lineItemId: string;
+  lineItemId: number;
   actualAmount: number;
   adjustments: Adjustment[];
   adjustmentsTotal: number;
@@ -39,7 +39,7 @@ export interface InvoiceLineItem {
 }
 
 export interface Adjustment {
-  id: string;
+  id: number;
   amount: number;
   reason: string;
   createdBy: string;

@@ -22,7 +22,7 @@ interface DataTableProps<T> {
     onPageChange: (page: number) => void;
   };
   emptyMessage?: string;
-  rowKey: (item: T) => string;
+  rowKey: (item: T) => string | number;
   rowOpacity?: (item: T) => number | undefined;
 }
 

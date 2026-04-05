@@ -6,9 +6,9 @@ import { useAdjustmentHistory } from '@plutus/hooks';
 import { formatDateTime, formatMoney } from '@plutus/utils/format';
 
 interface AdjustmentHistoryProps {
-  invoiceId: string;
-  lineItemId: string;
-  adjustmentId: string;
+  invoiceId: string | number;
+  lineItemId: string | number;
+  adjustmentId: string | number;
 }
 
 const actionIcons = {

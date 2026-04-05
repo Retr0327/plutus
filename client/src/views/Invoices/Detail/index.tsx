@@ -46,7 +46,7 @@ export default function InvoiceDetailView() {
   const { data: currencyData } = useCurrencyRates();
   const rates = currencyData?.rates;
 
-  const openAdjustmentForm = (lineItemId: string, adjustment?: Adjustment) => {
+  const openAdjustmentForm = (lineItemId: string | number, adjustment?: Adjustment) => {
     modals.open({
       title: adjustment ? 'Edit Adjustment' : 'Add Adjustment',
       children: (
@@ -60,7 +60,7 @@ export default function InvoiceDetailView() {
     });
   };
 
-  const openDeleteConfirm = (lineItemId: string, adjustment: Adjustment) => {
+  const openDeleteConfirm = (lineItemId: string | number, adjustment: Adjustment) => {
     let deletedBy = '';
     modals.open({
       title: 'Delete Adjustment',
@@ -105,7 +105,7 @@ export default function InvoiceDetailView() {
     });
   };
 
-  const openHistory = (lineItemId: string, adjustment: Adjustment) => {
+  const openHistory = (lineItemId: string | number, adjustment: Adjustment) => {
     modals.open({
       title: `Change History — Adjustment`,
       size: 'lg',
