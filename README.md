@@ -2,6 +2,8 @@
 
 This project is a simple ad-ops billing system, featuring a full-stack application with a Next.js frontend and a NestJS backend, utilizing PostgreSQL for data storage. The application is containerized using Docker for easy setup and deployment.
 
+![dashboard](./static/dashboard.png)
+
 ## Prerequisites
 
 **To run the application:**
