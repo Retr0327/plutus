@@ -4,6 +4,7 @@ import {
   InternalServerErrorException,
   NotFoundException,
   Param,
+  ParseIntPipe,
   Patch,
   Query,
 } from '@nestjs/common';
@@ -54,7 +55,7 @@ export class CampaignController {
   }
 
   @Get(':id')
-  async findOne(@Param('id') id: string) {
+  async findOne(@Param('id', ParseIntPipe) id: number) {
     const campaignOrError = await this.queryBus.execute(
       new GetCampaignQuery({ id }),
     );
@@ -74,7 +75,7 @@ export class CampaignController {
   }
 
   @Patch(':id/archive')
-  async archive(@Param('id') id: string) {
+  async archive(@Param('id', ParseIntPipe) id: number) {
     const archiveOrError = await this.commandBus.execute(
       new ArchiveCampaignCommand({ id }),
     );
@@ -97,7 +98,7 @@ export class CampaignController {
   }
 
   @Patch(':id/unarchive')
-  async unarchive(@Param('id') id: string) {
+  async unarchive(@Param('id', ParseIntPipe) id: number) {
     const unarchiveOrError = await this.commandBus.execute(
       new UnarchiveCampaignCommand({ id }),
     );

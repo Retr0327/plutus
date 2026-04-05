@@ -7,8 +7,8 @@ import {
   makeMockInvoiceRepository,
 } from '../../factories';
 
-const LINE_ITEM_ID = 'nzjs4zd7e7edepopyzhla2ut';
-const INVOICE_ID = 'ywtkrlcr3xfx7lengdncbg4z';
+const LINE_ITEM_ID = 10;
+const INVOICE_ID = 1;
 
 describe('CreateAdjustmentUseCase', () => {
   let useCase: CreateAdjustmentUseCase;
@@ -44,7 +44,7 @@ describe('CreateAdjustmentUseCase', () => {
     expect(result.isOk()).toBe(true);
     if (result.isOk()) {
       expect(result.value.id).toBeDefined();
-      expect(typeof result.value.id).toBe('string');
+      expect(typeof result.value.id).toBe('number');
     }
     expect(dataSource.transaction).toHaveBeenCalled();
   });
@@ -54,7 +54,7 @@ describe('CreateAdjustmentUseCase', () => {
 
     const result = await useCase.execute(
       new CreateAdjustmentCommand({
-        invoiceId: 'nonexistent',
+        invoiceId: 99999,
         lineItemId: LINE_ITEM_ID,
         amount: -100,
         reason: 'test',
@@ -95,7 +95,7 @@ describe('CreateAdjustmentUseCase', () => {
     const result = await useCase.execute(
       new CreateAdjustmentCommand({
         invoiceId: INVOICE_ID,
-        lineItemId: 'nonexistent_line_item_id_x',
+        lineItemId: 99999,
         amount: -100,
         reason: 'test',
         createdBy: 'test@test.com',

@@ -8,16 +8,16 @@ import { Adjustment } from './adjustment/adjustment';
 import { AdjustmentCollection } from './adjustment/adjustment-collection';
 
 export interface InvoiceLineItemProps {
-  id: string;
-  invoiceId: string;
-  campaignLineItemId: string;
+  id: number;
+  invoiceId: number;
+  campaignLineItemId: number;
   actualAmount: number;
   adjustments?: Adjustment[];
 }
 
 export interface CreateInvoiceLineItemProps {
-  invoiceId: string;
-  campaignLineItemId: string;
+  invoiceId: number;
+  campaignLineItemId: number;
   actualAmount: number;
 }
 

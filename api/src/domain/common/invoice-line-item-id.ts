@@ -1,3 +1,3 @@
-import { Cuid } from '@common/domain/common/cuid';
+import { SerialId } from '@common/domain/common/serial-id';
 
-export class InvoiceLineItemId extends Cuid {}
+export class InvoiceLineItemId extends SerialId {}

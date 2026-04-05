@@ -2,7 +2,7 @@ import type { CampaignProps } from '@plutus/domain/campaign/campaign';
 import { Campaign } from '@plutus/domain/campaign/campaign';
 
 const CAMPAIGN_DEFAULTS: CampaignProps = {
-  id: 'dncnkn18pqamrqx43689pckc',
+  id: 1,
   name: 'Summer Brand Awareness',
   advertiser: 'Nike',
   startDate: 1780300800000,

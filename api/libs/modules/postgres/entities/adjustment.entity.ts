@@ -1,5 +1,5 @@
 import { Column, Entity, JoinColumn, ManyToOne } from 'typeorm';
-import { DefaultEntity, PrimaryCuidColumn } from '@modules/postgres/common';
+import { DefaultEntity } from '@modules/postgres/common';
 import { InvoiceLineItem } from './invoice-line-item.entity';
 
 @Entity('adjustments')
@@ -18,8 +18,8 @@ export class Adjustment extends DefaultEntity {
   @Column({ length: 255, name: 'created_by' })
   createdBy!: string;
 
-  @PrimaryCuidColumn({ name: 'invoice_line_item_id' })
-  invoiceLineItemId!: string;
+  @Column('integer', { name: 'invoice_line_item_id' })
+  invoiceLineItemId!: number;
 
   @ManyToOne(
     () => InvoiceLineItem,

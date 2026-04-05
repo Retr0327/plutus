@@ -6,8 +6,8 @@ import { CampaignLineItemId } from './campaign-line-item-id';
 import { CampaignLineItemName } from './campaign-line-item-name';
 
 interface CampaignLineItemProps {
-  id: string;
-  campaignId: string;
+  id: number;
+  campaignId: number;
   name: string;
   bookedAmount: number;
   actualAmount: number;
@@ -15,7 +15,7 @@ interface CampaignLineItemProps {
 
 export interface CreateCampaignLineItemProps {
   name: string;
-  campaignId: string;
+  campaignId: number;
   bookedAmount: number;
   actualAmount: number;
 }

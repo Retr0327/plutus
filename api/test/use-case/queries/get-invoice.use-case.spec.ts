@@ -15,14 +15,12 @@ describe('GetInvoiceUseCase', () => {
     const invoice = makeInvoice();
     repo.findById.mockResolvedValue(invoice);
 
-    const result = await useCase.execute(
-      new GetInvoiceQuery({ id: 'ywtkrlcr3xfx7lengdncbg4z' }),
-    );
+    const result = await useCase.execute(new GetInvoiceQuery({ id: 1 }));
 
     expect(result.isOk()).toBe(true);
     if (result.isOk()) {
       expect(result.value).not.toBeNull();
-      expect(result.value!.id).toBe('ywtkrlcr3xfx7lengdncbg4z');
+      expect(result.value!.id).toBe(1);
     }
   });
 
@@ -31,7 +29,7 @@ describe('GetInvoiceUseCase', () => {
     repo.findAll.mockResolvedValue({ items: [invoice], totalItems: 1 });
 
     const result = await useCase.execute(
-      new GetInvoiceQuery({ campaignId: 'dncnkn18pqamrqx43689pckc' }),
+      new GetInvoiceQuery({ campaignId: 1 }),
     );
 
     expect(result.isOk()).toBe(true);
@@ -39,16 +37,14 @@ describe('GetInvoiceUseCase', () => {
       expect(result.value).not.toBeNull();
     }
     expect(repo.findAll).toHaveBeenCalledWith({
-      campaignId: 'dncnkn18pqamrqx43689pckc',
+      campaignId: 1,
     });
   });
 
   it('should return null when invoice not found by id', async () => {
     repo.findById.mockResolvedValue(null);
 
-    const result = await useCase.execute(
-      new GetInvoiceQuery({ id: 'nonexistent' }),
-    );
+    const result = await useCase.execute(new GetInvoiceQuery({ id: 99999 }));
 
     expect(result.isOk()).toBe(true);
     if (result.isOk()) {
@@ -60,7 +56,7 @@ describe('GetInvoiceUseCase', () => {
     repo.findAll.mockResolvedValue({ items: [], totalItems: 0 });
 
     const result = await useCase.execute(
-      new GetInvoiceQuery({ campaignId: 'nonexistent' }),
+      new GetInvoiceQuery({ campaignId: 99999 }),
     );
 
     expect(result.isOk()).toBe(true);

@@ -2,16 +2,16 @@ import { Command } from '@nestjs/cqrs';
 import { DeleteAdjustmentOutput } from './delete-adjustment.output';
 
 type Input = {
-  invoiceId: string;
-  lineItemId: string;
-  adjustmentId: string;
+  invoiceId: number;
+  lineItemId: number;
+  adjustmentId: number;
   deletedBy: string;
 };
 
 export class DeleteAdjustmentCommand extends Command<DeleteAdjustmentOutput> {
-  readonly invoiceId: string;
-  readonly lineItemId: string;
-  readonly adjustmentId: string;
+  readonly invoiceId: number;
+  readonly lineItemId: number;
+  readonly adjustmentId: number;
   readonly deletedBy: string;
 
   constructor(input: Input) {

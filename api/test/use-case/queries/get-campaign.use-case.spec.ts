@@ -15,14 +15,12 @@ describe('GetCampaignUseCase', () => {
     const campaign = makeCampaign();
     repo.findById.mockResolvedValue(campaign);
 
-    const result = await useCase.execute(
-      new GetCampaignQuery({ id: 'dncnkn18pqamrqx43689pckc' }),
-    );
+    const result = await useCase.execute(new GetCampaignQuery({ id: 1 }));
 
     expect(result.isOk()).toBe(true);
     if (result.isOk()) {
       expect(result.value).not.toBeNull();
-      expect(result.value!.id).toBe('dncnkn18pqamrqx43689pckc');
+      expect(result.value!.id).toBe(1);
       expect(result.value!.name).toBe('Summer Brand Awareness');
     }
   });
@@ -30,9 +28,7 @@ describe('GetCampaignUseCase', () => {
   it('should return null when campaign not found', async () => {
     repo.findById.mockResolvedValue(null);
 
-    const result = await useCase.execute(
-      new GetCampaignQuery({ id: 'nonexistent' }),
-    );
+    const result = await useCase.execute(new GetCampaignQuery({ id: 99999 }));
 
     expect(result.isOk()).toBe(true);
     if (result.isOk()) {

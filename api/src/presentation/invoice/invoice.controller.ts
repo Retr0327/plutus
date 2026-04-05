@@ -9,6 +9,7 @@ import {
   InternalServerErrorException,
   NotFoundException,
   Param,
+  ParseIntPipe,
   Patch,
   Post,
   Query,
@@ -74,7 +75,7 @@ export class InvoiceController {
   }
 
   @Get(':id')
-  async findOne(@Param('id') id: string) {
+  async findOne(@Param('id', ParseIntPipe) id: number) {
     const invoiceOrError = await this.queryBus.execute(
       new GetInvoiceQuery({ id }),
     );
@@ -103,7 +104,7 @@ export class InvoiceController {
   }
 
   @Patch(':id/archive')
-  async archive(@Param('id') id: string) {
+  async archive(@Param('id', ParseIntPipe) id: number) {
     const archiveOrError = await this.commandBus.execute(
       new ArchiveInvoiceCommand({ id }),
     );
@@ -126,7 +127,7 @@ export class InvoiceController {
   }
 
   @Patch(':id/unarchive')
-  async unarchive(@Param('id') id: string) {
+  async unarchive(@Param('id', ParseIntPipe) id: number) {
     const unarchiveOrError = await this.commandBus.execute(
       new UnarchiveInvoiceCommand({ id }),
     );
@@ -141,8 +142,8 @@ export class InvoiceController {
   @Post(':invoiceId/line-items/:lineItemId/adjustments')
   @HttpCode(HttpStatus.CREATED)
   async createAdjustment(
-    @Param('invoiceId') invoiceId: string,
-    @Param('lineItemId') lineItemId: string,
+    @Param('invoiceId', ParseIntPipe) invoiceId: number,
+    @Param('lineItemId', ParseIntPipe) lineItemId: number,
     @Body() body: CreateAdjustmentDto,
   ) {
     const result = await this.commandBus.execute(
@@ -157,29 +158,13 @@ export class InvoiceController {
     if (result.isErr()) {
       throw result.error;
     }
-    const adjustmentOrError = await this.queryBus.execute(
-      new GetAdjustmentQuery({
-        invoiceId,
-        lineItemId,
-        adjustmentId: result.value.id,
-      }),
-    );
-    if (adjustmentOrError.isErr()) {
-      throw new InternalServerErrorException();
-    }
-    if (adjustmentOrError.value === null) {
-      throw new NotFoundException({ id: result.value.id });
-    }
-    return this.getAdjustmentPresenter.present({
-      adjustment: adjustmentOrError.value,
-    });
   }
 
   @Patch(':invoiceId/line-items/:lineItemId/adjustments/:adjustmentId')
   async updateAdjustment(
-    @Param('invoiceId') invoiceId: string,
-    @Param('lineItemId') lineItemId: string,
-    @Param('adjustmentId') adjustmentId: string,
+    @Param('invoiceId', ParseIntPipe) invoiceId: number,
+    @Param('lineItemId', ParseIntPipe) lineItemId: number,
+    @Param('adjustmentId', ParseIntPipe) adjustmentId: number,
     @Body() body: UpdateAdjustmentDto,
   ) {
     const result = await this.commandBus.execute(
@@ -215,9 +200,9 @@ export class InvoiceController {
 
   @Delete(':invoiceId/line-items/:lineItemId/adjustments/:adjustmentId')
   async remove(
-    @Param('invoiceId') invoiceId: string,
-    @Param('lineItemId') lineItemId: string,
-    @Param('adjustmentId') adjustmentId: string,
+    @Param('invoiceId', ParseIntPipe) invoiceId: number,
+    @Param('lineItemId', ParseIntPipe) lineItemId: number,
+    @Param('adjustmentId', ParseIntPipe) adjustmentId: number,
     @Query() query: DeleteAdjustmentQueryDto,
   ) {
     if (!query.deletedBy) {
@@ -234,16 +219,13 @@ export class InvoiceController {
     if (result.isErr()) {
       throw result.error;
     }
-    return this.deleteAdjustmentPresenter.present({
-      id: result.value.id,
-    });
   }
 
   @Get(':invoiceId/line-items/:lineItemId/adjustments/:adjustmentId/history')
   async getAdjustmentHistory(
-    @Param('invoiceId') invoiceId: string,
-    @Param('lineItemId') lineItemId: string,
-    @Param('adjustmentId') adjustmentId: string,
+    @Param('invoiceId', ParseIntPipe) invoiceId: number,
+    @Param('lineItemId', ParseIntPipe) lineItemId: number,
+    @Param('adjustmentId', ParseIntPipe) adjustmentId: number,
   ) {
     const result = await this.queryBus.execute(
       new GetAdjustmentHistoryQuery({

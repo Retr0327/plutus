@@ -1,3 +1,9 @@
+import request from 'supertest';
+import { App } from 'supertest/types';
+import { Repository } from 'typeorm';
+import { INestApplication } from '@nestjs/common';
+import { Test, TestingModule } from '@nestjs/testing';
+import { getRepositoryToken } from '@nestjs/typeorm';
 import { HttpExceptionFilter } from '@common/errors';
 import { ResponseInterceptor } from '@common/interceptors/response.interceptor';
 import { ZodValidationPipe } from '@common/pipes/zod-validation.pipe';
@@ -6,12 +12,6 @@ import {
   CampaignLineItem,
   Invoice,
 } from '@modules/postgres/entities';
-import request from 'supertest';
-import { App } from 'supertest/types';
-import { Repository } from 'typeorm';
-import { INestApplication } from '@nestjs/common';
-import { Test, TestingModule } from '@nestjs/testing';
-import { getRepositoryToken } from '@nestjs/typeorm';
 import { AppModule } from '../../src/infrastructure/app.module';
 
 describe('Campaign endpoints (e2e)', () => {
@@ -126,7 +126,7 @@ describe('Campaign endpoints (e2e)', () => {
 
     it('should return 404 for non-existent campaign', async () => {
       const res = await request(app.getHttpServer())
-        .get('/api/v1/campaigns/nonexistent_id_00000000')
+        .get('/api/v1/campaigns/99999')
         .expect(404);
 
       expect(res.body.success).toBe(false);
@@ -148,7 +148,7 @@ describe('Campaign endpoints (e2e)', () => {
 
     it('should return 404 for non-existent campaign', async () => {
       await request(app.getHttpServer())
-        .patch('/api/v1/campaigns/nonexistent_id_00000000/archive')
+        .patch('/api/v1/campaigns/99999/archive')
         .expect(404);
     });
 

@@ -2,11 +2,11 @@ import { Command } from '@nestjs/cqrs';
 import { ArchiveInvoiceOutput } from './archive-invoice.output';
 
 type Input = {
-  id: string;
+  id: number;
 };
 
 export class ArchiveInvoiceCommand extends Command<ArchiveInvoiceOutput> {
-  readonly id: string;
+  readonly id: number;
 
   constructor(input: Input) {
     super();

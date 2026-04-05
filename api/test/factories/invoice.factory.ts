@@ -3,8 +3,8 @@ import { Invoice } from '@plutus/domain/invoice/invoice';
 import type { InvoiceLineItemProps } from '@plutus/domain/invoice/invoice-line-item/invoice-line-item';
 import { InvoiceLineItem } from '@plutus/domain/invoice/invoice-line-item/invoice-line-item';
 
-const INVOICE_ID = 'ywtkrlcr3xfx7lengdncbg4z';
-const CAMPAIGN_ID = 'dncnkn18pqamrqx43689pckc';
+const INVOICE_ID = 1;
+const CAMPAIGN_ID = 1;
 
 const INVOICE_DEFAULTS: InvoiceProps = {
   id: INVOICE_ID,
@@ -18,10 +18,9 @@ const INVOICE_DEFAULTS: InvoiceProps = {
 };
 
 const LINE_ITEM_DEFAULTS: InvoiceLineItemProps = {
-  id: 'nzjs4zd7e7edepopyzhla2ut',
+  id: 10,
   invoiceId: INVOICE_ID,
-  campaignLineItemId: 'drmahwrh2rqjq3dbrh06m21q',
-  name: 'Display Ads',
+  campaignLineItemId: 100,
   actualAmount: 48750,
   adjustments: [],
 };

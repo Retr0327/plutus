@@ -2,18 +2,18 @@ import { Command } from '@nestjs/cqrs';
 import { UpdateAdjustmentOutput } from './update-adjustment.output';
 
 type Input = {
-  invoiceId: string;
-  lineItemId: string;
-  adjustmentId: string;
+  invoiceId: number;
+  lineItemId: number;
+  adjustmentId: number;
   amount?: number;
   reason?: string;
   updatedBy: string;
 };
 
 export class UpdateAdjustmentCommand extends Command<UpdateAdjustmentOutput> {
-  readonly invoiceId: string;
-  readonly lineItemId: string;
-  readonly adjustmentId: string;
+  readonly invoiceId: number;
+  readonly lineItemId: number;
+  readonly adjustmentId: number;
   readonly amount?: number;
   readonly reason?: string;
   readonly updatedBy: string;

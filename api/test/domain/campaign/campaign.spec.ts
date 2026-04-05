@@ -5,7 +5,7 @@ describe('Campaign aggregate', () => {
   describe('from()', () => {
     it('should reconstruct a campaign from props', () => {
       const campaign = makeCampaign();
-      expect(campaign.id.value).toBe('dncnkn18pqamrqx43689pckc');
+      expect(campaign.id.value).toBe(1);
       expect(campaign.name.value).toBe('Summer Brand Awareness');
       expect(campaign.advertiser.value).toBe('Nike');
       expect(campaign.isArchived).toBe(false);
@@ -108,7 +108,7 @@ describe('Campaign aggregate', () => {
 
     it('should return false for different id', () => {
       const a = makeCampaign();
-      const b = makeCampaign({ id: 'abc12345678901234567890a' });
+      const b = makeCampaign({ id: 2 });
       expect(a.equals(b)).toBe(false);
     });
 

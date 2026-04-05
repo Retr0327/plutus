@@ -32,21 +32,21 @@ export type GetOneInvoicePresenterInput = {
 };
 
 export type GetOneInvoicePresenterOutput = {
-  id: string;
+  id: number;
   invoiceNumber: string;
   status: string;
   archivedAt: number | null;
   campaign: {
-    id: string;
+    id: number;
     name: string;
   };
   lineItems: {
-    id: string;
+    id: number;
     name: string | null;
-    campaignLineItemId: string;
+    campaignLineItemId: number;
     actualAmount: number;
     adjustments: {
-      id: string;
+      id: number;
       amount: number;
       reason: string;
       createdBy: string;
@@ -119,7 +119,7 @@ export class GetOneInvoicePresenter implements Presenter<
 }
 
 export type ArchiveInvoicePresenterInput = {
-  readonly id: string;
+  readonly id: number;
   readonly archivedAt: number | null;
 };
 
@@ -136,10 +136,10 @@ export class ArchiveInvoicePresenter implements Presenter<
 }
 
 export type UnarchiveInvoicePresenterInput = {
-  readonly id: string;
+  readonly id: number;
 };
 
-export type UnarchiveInvoicePresenterOutput = { id: string; archivedAt: null };
+export type UnarchiveInvoicePresenterOutput = { id: number; archivedAt: null };
 
 @Injectable()
 export class UnarchiveInvoicePresenter implements Presenter<
@@ -178,11 +178,11 @@ export class GetAdjustmentPresenter implements Presenter<
 }
 
 export type DeleteAdjustmentPresenterInput = {
-  readonly id: string;
+  readonly id: number;
 };
 
 export type DeleteAdjustmentPresenterOutput = {
-  id: string;
+  id: number;
   deleted: true;
 };
 

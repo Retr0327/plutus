@@ -5,7 +5,7 @@ type Input = {
   page?: number;
   limit?: number;
   status?: string;
-  campaignId?: string;
+  campaignId?: number;
   includeArchived?: boolean;
 };
 
@@ -13,7 +13,7 @@ export class GetInvoiceListQuery extends Query<GetInvoiceListOutput> {
   readonly page: number;
   readonly limit: number;
   readonly status?: string;
-  readonly campaignId?: string;
+  readonly campaignId?: number;
   readonly includeArchived: boolean;
 
   constructor(input?: Input) {

@@ -13,7 +13,7 @@ import { CampaignLineItemCollection } from './campaign-line-item/campaign-line-i
 import { CampaignName } from './campaign-name';
 
 export interface CampaignProps {
-  id: string;
+  id: number;
   name: string;
   advertiser: string;
   startDate: number;

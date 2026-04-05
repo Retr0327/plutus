@@ -9,7 +9,7 @@ function makeMockCampaignTypeOrmRepo() {
 
 function makeCampaignEntity(overrides: Record<string, any> = {}) {
   return {
-    id: 'dncnkn18pqamrqx43689pckc',
+    id: 1,
     name: 'Summer Brand Awareness',
     advertiser: 'Nike',
     startDate: 1780300800000,
@@ -67,7 +67,7 @@ describe('GetCampaignSummaryUseCase', () => {
 
   it('should calculate totalPages correctly', async () => {
     const campaigns = Array.from({ length: 2 }, (_, i) =>
-      makeCampaignEntity({ id: `campaign_${i}`, name: `Campaign ${i}` }),
+      makeCampaignEntity({ id: i + 100, name: `Campaign ${i}` }),
     );
     repo.findAndCount.mockResolvedValue([campaigns, 5]);
 

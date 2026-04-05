@@ -2,11 +2,11 @@ import { Command } from '@nestjs/cqrs';
 import { UnarchiveCampaignOutput } from './unarchive-campaign.output';
 
 type UnarchiveCampaignCommandInput = {
-  id: string;
+  id: number;
 };
 
 export class UnarchiveCampaignCommand extends Command<UnarchiveCampaignOutput> {
-  readonly id: string;
+  readonly id: number;
 
   constructor(input: UnarchiveCampaignCommandInput) {
     super();

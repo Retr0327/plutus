@@ -23,13 +23,15 @@ export class CampaignMapper {
 
   static toPersistence(campaign: Campaign) {
     const po: Partial<CampaignPO> = {
-      id: campaign.id.value,
       name: campaign.name.value,
       advertiser: campaign.advertiser.value,
       startDate: String(campaign.startDate.value),
       endDate: String(campaign.endDate.value),
       archivedAt: campaign.archivedAt?.value ?? null,
     };
+    if (!campaign.id.isFirstCreated()) {
+      po.id = campaign.id.value;
+    }
     return po;
   }
 

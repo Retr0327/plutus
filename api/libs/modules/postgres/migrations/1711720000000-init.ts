@@ -6,7 +6,7 @@ export class Init1711720000000 implements MigrationInterface {
   public async up(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.query(`
       CREATE TABLE "campaigns" (
-        "id" char(24) NOT NULL,
+        "id" SERIAL NOT NULL,
         "name" varchar(255) NOT NULL,
         "advertiser" varchar(255) NOT NULL,
         "start_date" bigint NOT NULL,
@@ -20,10 +20,10 @@ export class Init1711720000000 implements MigrationInterface {
 
     await queryRunner.query(`
       CREATE TABLE "invoices" (
-        "id" char(24) NOT NULL,
+        "id" SERIAL NOT NULL,
         "invoice_number" varchar(50) NOT NULL,
         "status" varchar(20) NOT NULL DEFAULT 'draft',
-        "campaign_id" char(24) NOT NULL,
+        "campaign_id" integer NOT NULL,
         "updated_at" bigint NOT NULL,
         "archived_at" bigint DEFAULT NULL,
         "created_at" bigint NOT NULL,
@@ -36,11 +36,11 @@ export class Init1711720000000 implements MigrationInterface {
 
     await queryRunner.query(`
       CREATE TABLE "campaign_line_items" (
-        "id" char(24) NOT NULL,
+        "id" SERIAL NOT NULL,
         "name" varchar(255) NOT NULL,
         "booked_amount" decimal(12,2) NOT NULL,
         "actual_amount" decimal(12,2) NOT NULL,
-        "campaign_id" char(24) NOT NULL,
+        "campaign_id" integer NOT NULL,
         "updated_at" bigint NOT NULL,
         "created_at" bigint NOT NULL,
         CONSTRAINT "PK_campaign_line_items" PRIMARY KEY ("id"),
@@ -51,10 +51,10 @@ export class Init1711720000000 implements MigrationInterface {
 
     await queryRunner.query(`
       CREATE TABLE "invoice_line_items" (
-        "id" char(24) NOT NULL,
+        "id" SERIAL NOT NULL,
         "actual_amount" decimal(12,2) NOT NULL,
-        "invoice_id" char(24) NOT NULL,
-        "campaign_line_item_id" char(24) NOT NULL,
+        "invoice_id" integer NOT NULL,
+        "campaign_line_item_id" integer NOT NULL,
         "updated_at" bigint NOT NULL,
         "created_at" bigint NOT NULL,
         CONSTRAINT "PK_invoice_line_items" PRIMARY KEY ("id"),
@@ -71,11 +71,11 @@ export class Init1711720000000 implements MigrationInterface {
 
     await queryRunner.query(`
       CREATE TABLE "adjustments" (
-        "id" char(24) NOT NULL,
+        "id" SERIAL NOT NULL,
         "amount" decimal(12,2) NOT NULL,
         "reason" varchar(500) NOT NULL,
         "created_by" varchar(255) NOT NULL,
-        "invoice_line_item_id" char(24) NOT NULL,
+        "invoice_line_item_id" integer NOT NULL,
         "updated_at" bigint NOT NULL,
         "created_at" bigint NOT NULL,
         CONSTRAINT "PK_adjustments" PRIMARY KEY ("id"),

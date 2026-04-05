@@ -8,8 +8,8 @@ import { AdjustmentReason } from './adjustment-reason';
 import { CreatedBy } from './created-by';
 
 export interface AdjustmentProps {
-  id: string;
-  invoiceLineItemId: string;
+  id: number;
+  invoiceLineItemId: number;
   amount: number;
   reason: string;
   createdBy: string;
@@ -18,7 +18,7 @@ export interface AdjustmentProps {
 }
 
 export interface CreateAdjustmentProps {
-  invoiceLineItemId: string;
+  invoiceLineItemId: number;
   amount: number;
   reason: string;
   createdBy: string;

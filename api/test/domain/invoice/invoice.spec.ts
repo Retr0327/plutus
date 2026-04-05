@@ -5,7 +5,7 @@ describe('Invoice aggregate', () => {
   describe('from()', () => {
     it('should reconstruct an invoice from props', () => {
       const invoice = makeInvoice();
-      expect(invoice.id.value).toBe('ywtkrlcr3xfx7lengdncbg4z');
+      expect(invoice.id.value).toBe(1);
       expect(invoice.invoiceNumber.value).toBe('INV-2026-001');
       expect(invoice.isDraft()).toBe(true);
       expect(invoice.isArchived).toBe(false);
@@ -15,7 +15,7 @@ describe('Invoice aggregate', () => {
   describe('create()', () => {
     it('should create a new draft invoice', () => {
       const result = Invoice.create({
-        campaignId: 'dncnkn18pqamrqx43689pckc',
+        campaignId: 1,
         invoiceNumber: 'INV-2026-003',
       });
       expect(result.isOk()).toBe(true);

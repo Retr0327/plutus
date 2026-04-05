@@ -14,20 +14,20 @@ export type GetOneCampaignPresenterInput = {
 };
 
 export type GetOneCampaignPresenterOutput = {
-  id: string;
+  id: number;
   name: string;
   advertiser: string;
   startDate: number;
   endDate: number;
   archivedAt: number | null;
   lineItems: {
-    id: string;
+    id: number;
     name: string;
     bookedAmount: number;
     actualAmount: number;
   }[];
   invoices: {
-    id: string;
+    id: number;
     invoiceNumber: string;
     status: InvoiceStatus;
     totalBillableAmount: number;
@@ -103,7 +103,7 @@ export class GetCampaignSummaryPresenter implements Presenter<
 }
 
 export type ArchiveCampaignPresenterInput = {
-  id: string;
+  id: number;
   archivedAt: number | null;
 };
 
@@ -119,7 +119,7 @@ export class ArchiveCampaignPresenter implements Presenter<
   }
 }
 
-export type UnarchiveCampaignPresenterInput = { id: string };
+export type UnarchiveCampaignPresenterInput = { id: number };
 
 export type UnarchiveCampaignPresenterOutput = UnarchiveCampaignPresenterInput;
 

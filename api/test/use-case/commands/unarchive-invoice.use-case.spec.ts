@@ -17,12 +17,12 @@ describe('UnarchiveInvoiceUseCase', () => {
     repo.save.mockResolvedValue(undefined);
 
     const result = await useCase.execute(
-      new UnarchiveInvoiceCommand({ id: 'ywtkrlcr3xfx7lengdncbg4z' }),
+      new UnarchiveInvoiceCommand({ id: 1 }),
     );
 
     expect(result.isOk()).toBe(true);
     if (result.isOk()) {
-      expect(result.value.id).toBe('ywtkrlcr3xfx7lengdncbg4z');
+      expect(result.value.id).toBe(1);
     }
     expect(repo.save).toHaveBeenCalledWith(invoice);
   });
@@ -31,7 +31,7 @@ describe('UnarchiveInvoiceUseCase', () => {
     repo.findById.mockResolvedValue(null);
 
     const result = await useCase.execute(
-      new UnarchiveInvoiceCommand({ id: 'nonexistent' }),
+      new UnarchiveInvoiceCommand({ id: 99999 }),
     );
 
     expect(result.isErr()).toBe(true);
@@ -45,7 +45,7 @@ describe('UnarchiveInvoiceUseCase', () => {
     repo.findById.mockResolvedValue(invoice);
 
     const result = await useCase.execute(
-      new UnarchiveInvoiceCommand({ id: 'ywtkrlcr3xfx7lengdncbg4z' }),
+      new UnarchiveInvoiceCommand({ id: 1 }),
     );
 
     expect(result.isErr()).toBe(true);

@@ -2,15 +2,15 @@ import { Query } from '@nestjs/cqrs';
 import { GetAdjustmentHistoryOutput } from './get-adjustment-history.output';
 
 type Input = {
-  invoiceId: string;
-  lineItemId: string;
-  adjustmentId: string;
+  invoiceId: number;
+  lineItemId: number;
+  adjustmentId: number;
 };
 
 export class GetAdjustmentHistoryQuery extends Query<GetAdjustmentHistoryOutput> {
-  readonly invoiceId: string;
-  readonly lineItemId: string;
-  readonly adjustmentId: string;
+  readonly invoiceId: number;
+  readonly lineItemId: number;
+  readonly adjustmentId: number;
 
   constructor(input: Input) {
     super();

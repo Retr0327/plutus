@@ -21,12 +21,14 @@ export class InvoiceMapper {
 
   static toPersistence(invoice: Invoice) {
     const po: Partial<InvoicePO> = {
-      id: invoice.id.value,
       campaignId: invoice.campaignId.value,
       invoiceNumber: invoice.invoiceNumber.value,
       status: invoice.status.value,
       archivedAt: invoice.archivedAt?.value ?? null,
     };
+    if (!invoice.id.isFirstCreated()) {
+      po.id = invoice.id.value;
+    }
     return po;
   }
 

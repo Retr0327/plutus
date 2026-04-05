@@ -2,10 +2,10 @@ import { HttpException } from '@nestjs/common';
 import { Result } from '@common/result';
 
 export type InvoiceListItemDto = {
-  readonly id: string;
+  readonly id: number;
   readonly invoiceNumber: string;
   readonly status: string;
-  readonly campaignId: string;
+  readonly campaignId: number;
   readonly campaignName: string;
   readonly totalActualAmount: number;
   readonly totalAdjustments: number;

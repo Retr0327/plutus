@@ -2,11 +2,11 @@ import { Query } from '@nestjs/cqrs';
 import { GetCampaignOutput } from './get-campaign.output';
 
 type Input = {
-  id: string;
+  id: number;
 };
 
 export class GetCampaignQuery extends Query<GetCampaignOutput> {
-  readonly id: string;
+  readonly id: number;
 
   constructor(input: Input) {
     super();

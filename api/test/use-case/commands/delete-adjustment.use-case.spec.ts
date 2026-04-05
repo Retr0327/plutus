@@ -1,17 +1,17 @@
 import { DeleteAdjustmentCommand } from '@plutus/application/use-case/commands/delete-adjustment/delete-adjustment.input';
 import { DeleteAdjustmentUseCase } from '@plutus/application/use-case/commands/delete-adjustment/delete-adjustment.use-case';
-import { makeAdjustment } from '../../factories/adjustment.factory';
-import { makeLineItem } from '../../factories/invoice.factory';
 import {
   makeInvoice,
   makeMockAuditLogRepository,
   makeMockDataSource,
   makeMockInvoiceRepository,
 } from '../../factories';
+import { makeAdjustment } from '../../factories/adjustment.factory';
+import { makeLineItem } from '../../factories/invoice.factory';
 
-const INVOICE_ID = 'ywtkrlcr3xfx7lengdncbg4z';
-const LINE_ITEM_ID = 'nzjs4zd7e7edepopyzhla2ut';
-const ADJUSTMENT_ID = 'wdwxw0d22nqhp8elur10gzoc';
+const INVOICE_ID = 1;
+const LINE_ITEM_ID = 10;
+const ADJUSTMENT_ID = 1;
 
 function makeInvoiceWithAdjustment(status = 'draft') {
   const adjustment = makeAdjustment();
@@ -61,7 +61,7 @@ describe('DeleteAdjustmentUseCase', () => {
 
     const result = await useCase.execute(
       new DeleteAdjustmentCommand({
-        invoiceId: 'nonexistent',
+        invoiceId: 99999,
         lineItemId: LINE_ITEM_ID,
         adjustmentId: ADJUSTMENT_ID,
         deletedBy: 'admin@agency.com',
@@ -100,7 +100,7 @@ describe('DeleteAdjustmentUseCase', () => {
     const result = await useCase.execute(
       new DeleteAdjustmentCommand({
         invoiceId: INVOICE_ID,
-        lineItemId: 'nonexistent_line_item_id_x',
+        lineItemId: 99999,
         adjustmentId: ADJUSTMENT_ID,
         deletedBy: 'admin@agency.com',
       }),
@@ -120,7 +120,7 @@ describe('DeleteAdjustmentUseCase', () => {
       new DeleteAdjustmentCommand({
         invoiceId: INVOICE_ID,
         lineItemId: LINE_ITEM_ID,
-        adjustmentId: 'nonexistent_adjustment_id',
+        adjustmentId: 99999,
         deletedBy: 'admin@agency.com',
       }),
     );

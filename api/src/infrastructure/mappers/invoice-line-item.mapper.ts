@@ -19,11 +19,13 @@ export class InvoiceLineItemMapper {
 
   static toPersistence(item: InvoiceLineItem) {
     const po: Partial<InvoiceLineItemPO> = {
-      id: item.id.value,
       invoiceId: item.invoiceId.value,
       campaignLineItemId: item.campaignLineItemId.value,
       actualAmount: item.actualAmount.value,
     };
+    if (!item.id.isFirstCreated()) {
+      po.id = item.id.value;
+    }
     return po;
   }
 

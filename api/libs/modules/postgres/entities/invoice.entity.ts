@@ -1,5 +1,5 @@
 import { Column, Entity, JoinColumn, ManyToOne, OneToMany } from 'typeorm';
-import { DefaultEntity, PrimaryCuidColumn } from '@modules/postgres/common';
+import { DefaultEntity } from '@modules/postgres/common';
 import { Campaign } from '@modules/postgres/entities/campaign.entity';
 import { InvoiceLineItem } from '@modules/postgres/entities/invoice-line-item.entity';
 import { InvoiceStatus } from '@modules/postgres/enum';
@@ -17,8 +17,8 @@ export class Invoice extends DefaultEntity {
   @Column({ type: 'varchar', length: 20, default: InvoiceStatus.Draft })
   status!: InvoiceStatus;
 
-  @PrimaryCuidColumn({ name: 'campaign_id' })
-  campaignId!: string;
+  @Column('integer', { name: 'campaign_id' })
+  campaignId!: number;
 
   @Column({ type: 'bigint', name: 'archived_at', nullable: true })
   archivedAt!: number | null;

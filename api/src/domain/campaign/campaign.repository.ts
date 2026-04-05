@@ -14,7 +14,7 @@ export interface CampaignListResult {
 }
 
 export interface AbstractCampaignDomainRepository {
-  findById(id: string): Promise<Campaign | null>;
+  findById(id: number): Promise<Campaign | null>;
   findAll(options?: CampaignQueryOptions): Promise<CampaignListResult>;
   save(campaign: Campaign): Promise<void>;
 }

@@ -16,7 +16,6 @@ export class AdjustmentMapper {
 
   static toPersistence(adjustment: Adjustment) {
     const po: Partial<AdjustmentPO> = {
-      id: adjustment.id.value,
       invoiceLineItemId: adjustment.invoiceLineItemId.value,
       amount: adjustment.amount.value,
       reason: adjustment.reason.value,
@@ -24,6 +23,9 @@ export class AdjustmentMapper {
       createdAt: adjustment.createdAt.value,
       updatedAt: adjustment.updatedAt.value,
     };
+    if (!adjustment.id.isFirstCreated()) {
+      po.id = adjustment.id.value;
+    }
     return po;
   }
 

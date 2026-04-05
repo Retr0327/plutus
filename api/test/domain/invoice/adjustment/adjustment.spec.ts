@@ -5,7 +5,7 @@ describe('Adjustment entity', () => {
   describe('from()', () => {
     it('should reconstruct an adjustment from props', () => {
       const adj = makeAdjustment();
-      expect(adj.id.value).toBe('wdwxw0d22nqhp8elur10gzoc');
+      expect(adj.id.value).toBe(1);
       expect(adj.amount.value).toBe(-1218.75);
       expect(adj.reason.value).toBe('Under-delivery credit');
       expect(adj.createdBy.value).toBe('jane.doe@agency.com');
@@ -15,7 +15,7 @@ describe('Adjustment entity', () => {
   describe('create()', () => {
     it('should create a new adjustment', () => {
       const result = Adjustment.create({
-        invoiceLineItemId: 'nzjs4zd7e7edepopyzhla2ut',
+        invoiceLineItemId: 10,
         amount: -500,
         reason: 'Test reason',
         createdBy: 'test@test.com',
@@ -70,7 +70,7 @@ describe('Adjustment entity', () => {
 
     it('should return false for different id', () => {
       const a = makeAdjustment();
-      const b = makeAdjustment({ id: 'abc12345678901234567890a' });
+      const b = makeAdjustment({ id: 2 });
       expect(a.equals(b)).toBe(false);
     });
 

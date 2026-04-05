@@ -2,16 +2,16 @@ import { Command } from '@nestjs/cqrs';
 import { CreateAdjustmentOutput } from './create-adjustment.output';
 
 type Input = {
-  invoiceId: string;
-  lineItemId: string;
+  invoiceId: number;
+  lineItemId: number;
   amount: number;
   reason: string;
   createdBy: string;
 };
 
 export class CreateAdjustmentCommand extends Command<CreateAdjustmentOutput> {
-  readonly invoiceId: string;
-  readonly lineItemId: string;
+  readonly invoiceId: number;
+  readonly lineItemId: number;
   readonly amount: number;
   readonly reason: string;
   readonly createdBy: string;

@@ -1,6 +1,5 @@
-import { createId } from '@paralleldrive/cuid2';
-import { BeforeInsert } from 'typeorm';
-import { PrimaryCuidColumn, TimeStampColumn } from './column.decorator';
+import { BeforeInsert, PrimaryGeneratedColumn } from 'typeorm';
+import { TimeStampColumn } from './column.decorator';
 
 export class CreateDateEntity {
   @TimeStampColumn({ name: 'created_at' })
@@ -22,13 +21,6 @@ export class UpdateDateEntity extends CreateDateEntity {
 export class TimeStampEntity extends UpdateDateEntity {}
 
 export class DefaultEntity extends TimeStampEntity {
-  @PrimaryCuidColumn({ primary: true })
-  id!: string;
-
-  @BeforeInsert()
-  initPrimaryKey() {
-    if (!this.id) {
-      this.id = createId();
-    }
-  }
+  @PrimaryGeneratedColumn('increment')
+  id!: number;
 }

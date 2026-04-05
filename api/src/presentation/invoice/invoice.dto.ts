@@ -5,7 +5,7 @@ const invoiceListQuerySchema = z.object({
   page: z.coerce.number().int().min(1).default(1),
   limit: z.coerce.number().int().min(1).max(50).default(10),
   status: z.enum(['draft', 'finalized']).optional(),
-  campaignId: z.string().length(24).optional(),
+  campaignId: z.coerce.number().int().positive().optional(),
   includeArchived: z.coerce.boolean().default(false),
 });
 

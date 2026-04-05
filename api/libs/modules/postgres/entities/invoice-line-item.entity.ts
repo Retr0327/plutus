@@ -6,7 +6,7 @@ import {
   OneToMany,
   Unique,
 } from 'typeorm';
-import { DefaultEntity, PrimaryCuidColumn } from '@modules/postgres/common';
+import { DefaultEntity } from '@modules/postgres/common';
 import { Adjustment } from './adjustment.entity';
 import { CampaignLineItem } from './campaign-line-item.entity';
 import { Invoice } from './invoice.entity';
@@ -25,8 +25,8 @@ export class InvoiceLineItem extends DefaultEntity {
   @Column('decimal', { precision: 12, scale: 2, name: 'actual_amount' })
   actualAmount!: number;
 
-  @PrimaryCuidColumn({ name: 'invoice_id' })
-  invoiceId!: string;
+  @Column('integer', { name: 'invoice_id' })
+  invoiceId!: number;
 
   @ManyToOne(() => Invoice, (invoice) => invoice.lineItems, {
     onDelete: 'CASCADE',
@@ -34,8 +34,8 @@ export class InvoiceLineItem extends DefaultEntity {
   @JoinColumn({ name: 'invoice_id' })
   invoice!: Invoice;
 
-  @PrimaryCuidColumn({ name: 'campaign_line_item_id' })
-  campaignLineItemId!: string;
+  @Column('integer', { name: 'campaign_line_item_id' })
+  campaignLineItemId!: number;
 
   @ManyToOne(() => CampaignLineItem, (lineItem) => lineItem.invoiceLineItems, {
     onDelete: 'CASCADE',

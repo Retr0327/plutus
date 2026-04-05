@@ -2,7 +2,7 @@ import { HttpException } from '@nestjs/common';
 import { Result } from '@common/result';
 
 export type CampaignSummaryDto = {
-  readonly id: string;
+  readonly id: number;
   readonly name: string;
   readonly advertiser: string;
   readonly startDate: number;

@@ -1,9 +1,9 @@
-import { Campaign } from '@modules/postgres/entities';
-import { PostgresModule } from '@modules/postgres/postgres.module';
-import { CampaignDomainRepository } from '@plutus/infrastructure/repository/campaign.repository';
 import { Repository } from 'typeorm';
 import { Test, TestingModule } from '@nestjs/testing';
 import { getRepositoryToken } from '@nestjs/typeorm';
+import { CampaignDomainRepository } from '@plutus/infrastructure/repository/campaign.repository';
+import { Campaign } from '@modules/postgres/entities';
+import { PostgresModule } from '@modules/postgres/postgres.module';
 
 describe('CampaignDomainRepository (integration)', () => {
   let module: TestingModule;
@@ -52,7 +52,7 @@ describe('CampaignDomainRepository (integration)', () => {
     });
 
     it('should return null for non-existent id', async () => {
-      const result = await repo.findById('nonexistent_id_00000000');
+      const result = await repo.findById(99999);
       expect(result).toBeNull();
     });
   });

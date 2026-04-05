@@ -9,10 +9,10 @@ function makeMockInvoiceTypeOrmRepo() {
 
 function makeInvoiceEntity(overrides: Record<string, any> = {}) {
   return {
-    id: 'ywtkrlcr3xfx7lengdncbg4z',
+    id: 1,
     invoiceNumber: 'INV-2026-001',
     status: 'draft',
-    campaignId: 'dncnkn18pqamrqx43689pckc',
+    campaignId: 1,
     campaign: { name: 'Summer Campaign' },
     archivedAt: null,
     lineItems: [

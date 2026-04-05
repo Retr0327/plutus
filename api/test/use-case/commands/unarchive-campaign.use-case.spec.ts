@@ -17,12 +17,12 @@ describe('UnarchiveCampaignUseCase', () => {
     repo.save.mockResolvedValue(undefined);
 
     const result = await useCase.execute(
-      new UnarchiveCampaignCommand({ id: 'dncnkn18pqamrqx43689pckc' }),
+      new UnarchiveCampaignCommand({ id: 1 }),
     );
 
     expect(result.isOk()).toBe(true);
     if (result.isOk()) {
-      expect(result.value.id).toBe('dncnkn18pqamrqx43689pckc');
+      expect(result.value.id).toBe(1);
     }
     expect(repo.save).toHaveBeenCalledWith(campaign);
   });
@@ -31,7 +31,7 @@ describe('UnarchiveCampaignUseCase', () => {
     repo.findById.mockResolvedValue(null);
 
     const result = await useCase.execute(
-      new UnarchiveCampaignCommand({ id: 'nonexistent' }),
+      new UnarchiveCampaignCommand({ id: 99999 }),
     );
 
     expect(result.isErr()).toBe(true);
@@ -45,7 +45,7 @@ describe('UnarchiveCampaignUseCase', () => {
     repo.findById.mockResolvedValue(campaign);
 
     const result = await useCase.execute(
-      new UnarchiveCampaignCommand({ id: 'dncnkn18pqamrqx43689pckc' }),
+      new UnarchiveCampaignCommand({ id: 1 }),
     );
 
     expect(result.isErr()).toBe(true);

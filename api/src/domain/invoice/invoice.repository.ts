@@ -2,7 +2,7 @@ import { Invoice } from './invoice';
 
 export interface InvoiceQueryOptions {
   status?: string;
-  campaignId?: string;
+  campaignId?: number;
   includeArchived?: boolean;
   page?: number;
   limit?: number;
@@ -14,7 +14,7 @@ export interface InvoiceListResult {
 }
 
 export interface AbstractInvoiceDomainRepository {
-  findById(id: string): Promise<Invoice | null>;
+  findById(id: number): Promise<Invoice | null>;
   findAll(options?: InvoiceQueryOptions): Promise<InvoiceListResult>;
   save(invoice: Invoice): Promise<void>;
 }

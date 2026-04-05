@@ -14,12 +14,14 @@ export class CampaignLineItemMapper {
 
   static toPersistence(lineItem: CampaignLineItem) {
     const po: Partial<CampaignLineItemPO> = {
-      id: lineItem.id.value,
       campaignId: lineItem.campaignId.value,
       name: lineItem.name.value,
       bookedAmount: lineItem.bookedAmount.value,
       actualAmount: lineItem.actualAmount.value,
     };
+    if (!lineItem.id.isFirstCreated()) {
+      po.id = lineItem.id.value;
+    }
     return po;
   }
 

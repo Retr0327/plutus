@@ -21,7 +21,7 @@ export class CampaignDomainRepository implements AbstractCampaignDomainRepositor
     private readonly campaignRepository: Repository<Campaign>,
   ) {}
 
-  async findById(id: string) {
+  async findById(id: number) {
     const campaign = await this.campaignRepository.findOne({
       where: { id },
       relations: ['lineItems'],

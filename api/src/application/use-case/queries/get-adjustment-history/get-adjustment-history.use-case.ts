@@ -53,7 +53,7 @@ export class GetAdjustmentHistoryUseCase implements IQueryHandler<
 
       const auditLogs = await this.auditLogRepository.findByEntity(
         AuditLogEntity.Adjustment,
-        query.adjustmentId,
+        String(query.adjustmentId),
       );
 
       return Result.Ok({

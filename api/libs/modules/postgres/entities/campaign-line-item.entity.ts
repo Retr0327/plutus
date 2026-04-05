@@ -1,5 +1,5 @@
 import { Column, Entity, JoinColumn, ManyToOne, OneToMany } from 'typeorm';
-import { DefaultEntity, PrimaryCuidColumn } from '@modules/postgres/common';
+import { DefaultEntity } from '@modules/postgres/common';
 import { Campaign } from './campaign.entity';
 import { InvoiceLineItem } from './invoice-line-item.entity';
 
@@ -19,8 +19,8 @@ export class CampaignLineItem extends DefaultEntity {
   @Column('decimal', { precision: 12, scale: 2, name: 'actual_amount' })
   actualAmount!: number;
 
-  @PrimaryCuidColumn({ name: 'campaign_id' })
-  campaignId!: string;
+  @Column('integer', { name: 'campaign_id' })
+  campaignId!: number;
 
   @ManyToOne(() => Campaign, (campaign) => campaign.lineItems, {
     onDelete: 'CASCADE',

@@ -27,7 +27,7 @@ export class InvoiceDomainRepository implements AbstractInvoiceDomainRepository 
     private readonly invoiceRepository: Repository<Invoice>,
   ) {}
 
-  async findById(id: string) {
+  async findById(id: number) {
     const invoice = await this.invoiceRepository.findOne({
       where: { id },
       relations: ['lineItems', 'lineItems.adjustments'],
@@ -74,7 +74,7 @@ export class InvoiceDomainRepository implements AbstractInvoiceDomainRepository 
     await manager.save(Invoice, invoicePO);
 
     const toSaveLineItemPOs: Partial<InvoiceLineItem>[] = [];
-    const toDeleteLineItemIds: string[] = [];
+    const toDeleteLineItemIds: number[] = [];
 
     invoice.lineItems.newItems.forEach((item) => {
       toSaveLineItemPOs.push(InvoiceLineItemMapper.toPersistence(item));
@@ -94,7 +94,7 @@ export class InvoiceDomainRepository implements AbstractInvoiceDomainRepository 
     }
 
     const toSaveAdjustmentPOs: Partial<Adjustment>[] = [];
-    const toDeleteAdjustmentIds: string[] = [];
+    const toDeleteAdjustmentIds: number[] = [];
 
     const lineItemsWithAdjustmentChanges = [
       ...invoice.lineItems.newItems,
@@ -104,7 +104,7 @@ export class InvoiceDomainRepository implements AbstractInvoiceDomainRepository 
       ),
     ];
 
-    const seen = new Set<string>();
+    const seen = new Set<number>();
     for (const lineItem of lineItemsWithAdjustmentChanges) {
       if (seen.has(lineItem.id.value)) {
         continue;

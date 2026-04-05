@@ -16,13 +16,11 @@ describe('ArchiveCampaignUseCase', () => {
     repo.findById.mockResolvedValue(campaign);
     repo.save.mockResolvedValue(undefined);
 
-    const result = await useCase.execute(
-      new ArchiveCampaignCommand({ id: 'dncnkn18pqamrqx43689pckc' }),
-    );
+    const result = await useCase.execute(new ArchiveCampaignCommand({ id: 1 }));
 
     expect(result.isOk()).toBe(true);
     if (result.isOk()) {
-      expect(result.value.id).toBe('dncnkn18pqamrqx43689pckc');
+      expect(result.value.id).toBe(1);
     }
     expect(repo.save).toHaveBeenCalledWith(campaign);
   });
@@ -31,7 +29,7 @@ describe('ArchiveCampaignUseCase', () => {
     repo.findById.mockResolvedValue(null);
 
     const result = await useCase.execute(
-      new ArchiveCampaignCommand({ id: 'nonexistent' }),
+      new ArchiveCampaignCommand({ id: 99999 }),
     );
 
     expect(result.isErr()).toBe(true);
@@ -44,9 +42,7 @@ describe('ArchiveCampaignUseCase', () => {
     const campaign = makeCampaign({ archivedAt: 1711720000000 });
     repo.findById.mockResolvedValue(campaign);
 
-    const result = await useCase.execute(
-      new ArchiveCampaignCommand({ id: 'dncnkn18pqamrqx43689pckc' }),
-    );
+    const result = await useCase.execute(new ArchiveCampaignCommand({ id: 1 }));
 
     expect(result.isErr()).toBe(true);
     if (result.isErr()) {

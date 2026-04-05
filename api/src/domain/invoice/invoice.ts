@@ -17,8 +17,8 @@ import { InvoiceNumber } from './invoice-number';
 import { InvoiceStatus } from './invoice-status';
 
 export interface InvoiceProps {
-  id: string;
-  campaignId: string;
+  id: number;
+  campaignId: number;
   invoiceNumber: string;
   status: string;
   archivedAt: number | null;
@@ -28,7 +28,7 @@ export interface InvoiceProps {
 }
 
 export interface CreateInvoiceProps {
-  campaignId: string;
+  campaignId: number;
   invoiceNumber: string;
 }
 

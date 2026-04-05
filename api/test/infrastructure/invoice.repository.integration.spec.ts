@@ -1,3 +1,8 @@
+import { Repository } from 'typeorm';
+import { Test, TestingModule } from '@nestjs/testing';
+import { getRepositoryToken } from '@nestjs/typeorm';
+import { Adjustment as AdjustmentDomain } from '@plutus/domain/invoice/invoice-line-item/adjustment/adjustment';
+import { InvoiceDomainRepository } from '@plutus/infrastructure/repository/invoice.repository';
 import {
   Adjustment,
   Campaign,
@@ -7,11 +12,6 @@ import {
 } from '@modules/postgres/entities';
 import { InvoiceStatus } from '@modules/postgres/enum';
 import { PostgresModule } from '@modules/postgres/postgres.module';
-import { Adjustment as AdjustmentDomain } from '@plutus/domain/invoice/invoice-line-item/adjustment/adjustment';
-import { InvoiceDomainRepository } from '@plutus/infrastructure/repository/invoice.repository';
-import { Repository } from 'typeorm';
-import { Test, TestingModule } from '@nestjs/testing';
-import { getRepositoryToken } from '@nestjs/typeorm';
 
 describe('InvoiceDomainRepository (integration)', () => {
   let module: TestingModule;
@@ -22,8 +22,8 @@ describe('InvoiceDomainRepository (integration)', () => {
   let invoiceLineItemRepo: Repository<InvoiceLineItem>;
   let adjustmentRepo: Repository<Adjustment>;
 
-  let campaignId: string;
-  let campaignLineItemId: string;
+  let campaignId: number;
+  let campaignLineItemId: number;
 
   beforeAll(async () => {
     module = await Test.createTestingModule({
@@ -89,7 +89,7 @@ describe('InvoiceDomainRepository (integration)', () => {
   }
 
   async function seedLineItem(
-    invoiceId: string,
+    invoiceId: number,
     overrides: Partial<InvoiceLineItem> = {},
   ) {
     const lineItem = invoiceLineItemRepo.create({
@@ -105,7 +105,7 @@ describe('InvoiceDomainRepository (integration)', () => {
   }
 
   async function seedAdjustment(
-    invoiceLineItemId: string,
+    invoiceLineItemId: number,
     overrides: Partial<Adjustment> = {},
   ) {
     const adj = adjustmentRepo.create({
@@ -135,7 +135,7 @@ describe('InvoiceDomainRepository (integration)', () => {
     });
 
     it('should return null for non-existent id', async () => {
-      const result = await repo.findById('nonexistent_id_00000000');
+      const result = await repo.findById(99999);
       expect(result).toBeNull();
     });
   });
